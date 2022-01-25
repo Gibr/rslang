@@ -1,7 +1,8 @@
-import { NavLink } from "react-router-dom";
-import "./navMenu.scss";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import './NavMenu.scss';
 
-const NavMenu = (): JSX.Element => {
+function NavMenu(): JSX.Element {
   return (
     <nav className="nav-menu">
       <ul className="nav-menu__list">
@@ -33,6 +34,6 @@ const NavMenu = (): JSX.Element => {
       </ul>
     </nav>
   );
-};
+}
 
 export default NavMenu;
