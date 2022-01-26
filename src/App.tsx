@@ -1,12 +1,19 @@
 import './App.scss';
 import React from 'react';
-import Router from './components/Router/Router';
+import { BrowserRouter } from 'react-router-dom';
+import Header from './components/Header/Header';
+import Main from './components/Main/Main';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
-    <div className="app-wrapper">
-      <Router />
-    </div>
+    <BrowserRouter>
+      <div className="app-wrapper">
+        <Header />
+        <Main />
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 
