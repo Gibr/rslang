@@ -12,7 +12,7 @@ function NavMenu(): JSX.Element {
           </NavLink>
         </li>
         <li className="nav-menu__item">
-          <NavLink to="/authorization" className="nav-menu__link">
+          <NavLink to="/auth" className="nav-menu__link">
             Authorization
           </NavLink>
         </li>
@@ -27,8 +27,13 @@ function NavMenu(): JSX.Element {
           </NavLink>
         </li>
         <li className="nav-menu__item">
-          <NavLink to="/games" className="nav-menu__link">
-            Games
+          <NavLink to="/audio-challenge" className="nav-menu__link">
+            Audio-Challenge
+          </NavLink>
+        </li>
+        <li className="nav-menu__item">
+          <NavLink to="/sprint" className="nav-menu__link">
+            Sprint
           </NavLink>
         </li>
       </ul>

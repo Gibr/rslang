@@ -1,0 +1,2 @@
+export const NUMBER_OF_TEXTBOOK_UNITS = 6;
+export const NUMBER_OF_TEXTBOOK_UNIT_PAGES = 30;
