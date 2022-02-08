@@ -1,32 +1,25 @@
+@import '../../styles/constants.scss';
+@import '../../styles/placeholders.scss';
+
 .nav-menu {
   &__list {
-    padding: 0;
-    list-style: none;
+    padding: 0px 15px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-  }
-
-  &__item {
-    &::marker {
-      content: none;
-    }
-    &:not(:last-child) {
-      margin-right: 15px;
-    }
+    column-gap: 50px;
+    border-radius: 10px;
+    box-shadow: $shaddow-light;
   }
 
   &__link {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
-    font-size: 24px;
-    color: #000;
-    text-decoration: none;
-    transition: color 0.3s ease-in-out;
+    font-size: 30px;
+    line-height: 52px;
+    font-weight: 500;
+    @extend %transition;
 
     &.active {
-      color: rgb(112, 76, 182);
+      color: $color-main;
     }
   }
 }

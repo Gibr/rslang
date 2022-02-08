@@ -1,7 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import textbookNavReducer from '../components/TextbookNav/textbookNavSlice';
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    textbookNav: textbookNavReducer,
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;

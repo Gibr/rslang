@@ -1,0 +1,24 @@
+@import './placeholders.scss';
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @extend %font-main;
+  color: $color-font-dark;
+}
+
+.app-wrapper {
+  width: 100%;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.page-wrapper {
+  flex-grow: 1;
+  width: 100%;
+}
