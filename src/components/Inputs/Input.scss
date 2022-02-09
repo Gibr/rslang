@@ -1,0 +1,55 @@
+@import '../../styles/constants.scss';
+
+.input {
+  &-label {
+    display: block;
+    margin-bottom: 25px;
+    position: relative;
+
+    input {
+      &[type='text'],
+      &[type='email'],
+      &[type='password'],
+      &[type='submit'] {
+        border-radius: 5px;
+        display: block;
+        width: 100%;
+        padding: 15px;
+        border: 1px solid $color-bg-dark;
+        font-size: 20px;
+        transition: all 0.3s ease-in-out;
+
+        &:focus,
+        &:valid {
+          box-shadow: $shaddow-light;
+
+          & ~ .input-text {
+            top: 0;
+            transform: translateY(-50%);
+            font-size: 16px;
+          }
+        }
+      }
+
+      &[type='submit'] {
+        background-color: $color-unit-4;
+        border-color: $color-unit-4;
+        color: $color-font-light;
+        text-align: center;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &-text {
+    position: absolute;
+    font-size: 20px;
+    display: inline-block;
+    padding: 0 10px;
+    background: $color-font-light;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease-in-out;
+  }
+}

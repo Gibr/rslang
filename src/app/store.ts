@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import textbookNavReducer from '../components/TextbookNav/textbookNavSlice';
+import loginBtnReducer from '../components/LoginBtn/LoginBtnSlice';
 
 export const store = configureStore({
   reducer: {
     textbookNav: textbookNavReducer,
+    loginBtn: loginBtnReducer,
   },
 });
 

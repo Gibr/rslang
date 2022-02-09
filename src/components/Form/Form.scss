@@ -1,0 +1,33 @@
+@import '../../styles/constants.scss';
+@import '../../styles/mixins.scss';
+
+.form {
+  background: #fff;
+  padding: 50px;
+  min-width: 500px;
+
+  @include media-tablet {
+    width: 100%;
+    min-width: unset;
+    padding: 25px;
+  }
+
+  &-row {
+    text-align: center;
+    &:not(:last-child) {
+      margin-bottom: 25px;
+    }
+  }
+
+  &-text {
+    font-size: 18px;
+    color: $color-unit-4;
+    line-height: 150%;
+  }
+
+  &-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: $color-unit-4;
+  }
+}
