@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import './Popup.scss';
-import Form from '../Form/Form';
+import PopUporm from '../Forms/PopupForm';
 import { switchPopup } from '../LoginBtn/LoginBtnSlice';
 
 function Popup(): JSX.Element {
@@ -18,7 +18,7 @@ function Popup(): JSX.Element {
         }}
       />
       <div className="popup__container">
-        <Form />
+        <PopUporm />
       </div>
     </div>
   );
