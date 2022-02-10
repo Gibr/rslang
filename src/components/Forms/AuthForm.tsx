@@ -3,26 +3,22 @@ import './Form.scss';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import AppRoutes from '../../app/constants/routes';
-import InputText from '../Inputs/InputText';
-import InputEmail from '../Inputs/InputEmail';
-import InputPassword from '../Inputs/InputPassword';
-import InputSubmit from '../Inputs/InputSubmit';
+import Input from '../Input/Input';
 import { switchPopup } from '../LoginBtn/LoginBtnSlice';
 
-function PopupForm(): JSX.Element {
+function AuthForm(): JSX.Element {
   const dispatch = useDispatch();
 
   return (
     <form action="" className="form">
       <div className="form-row">
-        <div className="form-title">Registration</div>
+        <div className="form-title">Authorization</div>
       </div>
-      <InputText />
-      <InputEmail />
-      <InputPassword />
-      <InputSubmit />
+      <Input type="email" text="Email:" />
+      <Input type="password" text="Password:" />
+      <Input type="submit" text="Log In" />
       <div className="form-row">
-        <div className="form-text">Do you already have an account?</div>
+        <div className="form-text">Do not have an account?</div>
         <NavLink
           to={AppRoutes.AUTH}
           className="form-title"
@@ -30,11 +26,11 @@ function PopupForm(): JSX.Element {
             dispatch(switchPopup());
           }}
         >
-          Authorization
+          Registration
         </NavLink>
       </div>
     </form>
   );
 }
 
-export default PopupForm;
+export default AuthForm;

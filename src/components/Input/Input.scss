@@ -20,7 +20,7 @@
         transition: all 0.3s ease-in-out;
 
         &:focus,
-        &:valid {
+        &.input-focus {
           box-shadow: $shaddow-light;
 
           & ~ .input-text {
