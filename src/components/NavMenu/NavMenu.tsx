@@ -3,13 +3,24 @@ import './NavMenu.scss';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import AppRoutes from '../../app/constants/routes';
+import { useAppSelector } from '../../app/hooks';
+import {
+  selectCurrentUnit,
+  selectCurrentUnitPage,
+} from '../TextbookNav/textbookNavSlice';
 
 function NavMenu(): JSX.Element {
+  const currentUnit = useAppSelector(selectCurrentUnit);
+  const currentUnitPage = useAppSelector(selectCurrentUnitPage);
+
   return (
     <nav className="nav-menu">
       <ul className="nav-menu__list">
         <li className="nav-menu__item">
-          <NavLink to={AppRoutes.TEXTBOOK} className="nav-menu__link">
+          <NavLink
+            to={`${AppRoutes.TEXTBOOK}/unit-${currentUnit}/${currentUnitPage}`}
+            className="nav-menu__link"
+          >
             Textbook
           </NavLink>
         </li>

@@ -14,6 +14,11 @@ function AppRouter(): JSX.Element {
       <Route path={AppRoutes.MAIN_SCREEN} element={<MainScreen />} />
       <Route path={AppRoutes.AUTH} element={<Auth />} />
       <Route path={AppRoutes.TEXTBOOK} element={<TextBook />} />
+      <Route path={`${AppRoutes.TEXTBOOK}/:unit/`} element={<TextBook />} />
+      <Route
+        path={`${AppRoutes.TEXTBOOK}/:unit/:page/`}
+        element={<TextBook />}
+      />
       <Route path={AppRoutes.STATISTICS} element={<Statistics />} />
       <Route path={AppRoutes.AUDIO_CHALLENGE} element={<AudioChallenge />} />
       <Route path={AppRoutes.SPRINT} element={<Sprint />} />
