@@ -9,11 +9,17 @@ import AppRoutes from '../../app/constants/routes';
 import {
   DEFAULT_TEXTBOOK_UNIT,
   DEFAULT_TEXTBOOK_UNIT_PAGE,
+  NUMBER_OF_TEXTBOOK_UNIT_PAGES,
 } from '../../app/constants/global';
 import {
+  decrementCurrentUnitPage,
+  incrementCurrentUnitPage,
+  selectCurrentUnitPage,
   setCurrentUnit,
   setCurrentUnitPage,
 } from '../../components/TextbookNav/textbookNavSlice';
+import TextbookWordCards from '../../components/TextbookWordCards/TextbookWordCards';
+import Pagination from '../../components/Pagination/Pagination';
 
 function TextBook(): JSX.Element {
   const { unit, page } = useParams();
@@ -43,6 +49,19 @@ function TextBook(): JSX.Element {
     <main className="page-wrapper textbook__wrapper">
       <div className="container textbook__container">
         <TextbookNav unitsData={unitsData} />
+        <TextbookWordCards />
+        <div className="textbook__pagination">
+          <Pagination
+            firstPageNum={DEFAULT_TEXTBOOK_UNIT_PAGE}
+            totalPages={NUMBER_OF_TEXTBOOK_UNIT_PAGES}
+            selectCurrentPage={selectCurrentUnitPage}
+            actions={{
+              increment: incrementCurrentUnitPage,
+              decrement: decrementCurrentUnitPage,
+              set: setCurrentUnitPage,
+            }}
+          />
+        </div>
       </div>
     </main>
   );
