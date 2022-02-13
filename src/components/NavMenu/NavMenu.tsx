@@ -21,7 +21,6 @@ function NavMenu(): JSX.Element {
             to={`${AppRoutes.TEXTBOOK}/unit-${currentUnit}/${currentUnitPage}`}
             className="nav-menu__link"
           >
-          <NavLink to={AppRoutes.TEXTBOOK} className="nav-menu__link">
             Textbook
           </NavLink>
         </li>
