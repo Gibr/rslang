@@ -1,0 +1,23 @@
+@import '../../styles/constants.scss';
+
+.header {
+  padding-top: 18px;
+  width: 100%;
+  background-color: $color-font-light;
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  .logo {
+    margin-right: 60px;
+  }
+
+  .nav-menu {
+    flex-grow: 1;
+    max-width: 850px;
+    margin-right: 15px;
+  }
+}

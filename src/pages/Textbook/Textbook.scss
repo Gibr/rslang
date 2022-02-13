@@ -1,0 +1,18 @@
+@import '../../styles//constants.scss';
+@import '../../styles/placeholders.scss';
+@import '../../styles/mixins.scss';
+
+.textbook__wrapper {
+  padding-top: 40px;
+}
+
+.textbook__pagination {
+  margin-top: 30px;
+  background-color: $color-bg-light;
+  padding: 10px 20px;
+  box-shadow: $shaddow-dark;
+}
+
+.textbook__units {
+  display: flex;
+}
