@@ -1,6 +1,7 @@
 import './WordCard.scss';
-import React, { useEffect, useState } from 'react';
 
+import React, { useEffect, useState } from 'react';
+import parse from 'html-react-parser';
 import { IWordData } from '../../app/data/words';
 import { useAppSelector } from '../../app/hooks';
 import { selectCurrentUnit } from '../TextbookNav/textbookNavSlice';
@@ -24,7 +25,6 @@ function WordCard(props: { wordData: IWordData }): JSX.Element {
         setIsImageLoaded(true);
       };
     };
-
     fetchImage();
   }, [wordData]);
 
@@ -49,7 +49,6 @@ function WordCard(props: { wordData: IWordData }): JSX.Element {
             <div className="block__item word__transcription">
               {wordData.transcription}
             </div>
-
             <div className="block__item translation word__translation">{`-- ${wordData.wordTranslate}`}</div>
           </div>
           <div
@@ -57,11 +56,7 @@ function WordCard(props: { wordData: IWordData }): JSX.Element {
           >
             <div className="block__item original meaning__original">
               <span className="original__icon"> &#9755;</span>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: `${wordData.textMeaning}`,
-                }}
-              />
+              <span>{parse(wordData.textMeaning)}</span>
             </div>
             <div className="block__item translation meaning__translation">
               {wordData.textMeaningTranslate}
@@ -72,11 +67,7 @@ function WordCard(props: { wordData: IWordData }): JSX.Element {
           >
             <div className="block__item original example__original">
               <span className="original__icon"> &#9755;</span>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: `${wordData.textExample}`,
-                }}
-              />
+              <span>{parse(wordData.textExample)}</span>
             </div>
             <div className="block__item translation example__translation">
               {wordData.textExampleTranslate}
