@@ -26,7 +26,6 @@ function TextBook(): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (!unit) {
       return navigate(
@@ -38,12 +37,14 @@ function TextBook(): JSX.Element {
         `${AppRoutes.TEXTBOOK}/${unit}/${DEFAULT_TEXTBOOK_UNIT_PAGE}`
       );
     }
+    return undefined;
   }, [navigate, unit, page]);
 
   dispatch(
     setCurrentUnit(unit ? +unit.slice(unit.length - 1) : DEFAULT_TEXTBOOK_UNIT)
   );
   dispatch(setCurrentUnitPage(page ? +page : DEFAULT_TEXTBOOK_UNIT_PAGE));
+
   return (
     <main className="page-wrapper textbook__wrapper">
       <div className="container textbook__container">

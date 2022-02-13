@@ -16,6 +16,9 @@
     font-size: 30px;
     line-height: 52px;
     font-weight: 500;
+    font-size: 24px;
+    color: $color-font-dark;
+    text-decoration: none;
     @extend %transition;
 
     &.active {
