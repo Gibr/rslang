@@ -9,6 +9,7 @@ import loader from '../../assets/icons/loading.gif';
 
 function WordCard(props: { wordData: IWordData }): JSX.Element {
   const { wordData } = props;
+
   const currentUnit = useAppSelector(selectCurrentUnit);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [imageSrc, setImageSrc] = useState(loader);
@@ -56,10 +57,11 @@ function WordCard(props: { wordData: IWordData }): JSX.Element {
           >
             <div className="block__item original meaning__original">
               <span className="original__icon"> &#9755;</span>
-              {
-                // TODO convert html-string into jsx-element
-                wordData.textMeaning
-              }
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: `${wordData.textMeaning}`,
+                }}
+              />
             </div>
             <div className="block__item translation meaning__translation">
               {wordData.textMeaningTranslate}
@@ -70,10 +72,11 @@ function WordCard(props: { wordData: IWordData }): JSX.Element {
           >
             <div className="block__item original example__original">
               <span className="original__icon"> &#9755;</span>
-              {
-                // TODO convert html-string into jsx-element
-                wordData.textExample
-              }
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: `${wordData.textExample}`,
+                }}
+              />
             </div>
             <div className="block__item translation example__translation">
               {wordData.textExampleTranslate}
