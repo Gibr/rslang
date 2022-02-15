@@ -25,7 +25,6 @@ function TextbookWordCards(): JSX.Element {
       const data = await getWords(currentUnit, currentUnitPage);
       setWordsData(data);
     };
-
     fetchData();
   }, [currentUnit, currentUnitPage]);
 
