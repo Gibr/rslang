@@ -1,2 +1,15 @@
-.main-screen__page-wrapper {
+@import '../../styles/mixins.scss';
+
+.section {
+  padding: 50px 0;
+
+  @include media-mobile-small() {
+    padding: 25px 0;
+  }
+
+  &__title {
+    font-size: 32px;
+    margin-bottom: 25px;
+    text-align: center;
+  }
 }

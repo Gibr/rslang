@@ -7,7 +7,7 @@ function Advantages(): JSX.Element {
     <section className="section">
       <div className="container">
         <div className="advantages">
-          <h2 className="advantages__title">{advantages.title}</h2>
+          <h2 className="section__title">{advantages.title}</h2>
           <ul className="advantages__list">
             {advantages.data.map((item) => {
               return (

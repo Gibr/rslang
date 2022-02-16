@@ -1,9 +1,9 @@
-export interface Ibanner {
+export interface IBanner {
   title: string;
   desc: Array<string>;
 }
 
-const banner: Ibanner = {
+const banner: IBanner = {
   title:
     'We are glad to present you our application for learning foreign languages - RSLang',
   desc: [
