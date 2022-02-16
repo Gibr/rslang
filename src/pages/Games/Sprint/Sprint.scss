@@ -1,0 +1,69 @@
+@import '../../../styles//constants.scss';
+
+.sprint__page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sprint__container {
+  width: 1400px;
+  padding: 50px;
+  padding-bottom: 100px;
+  border-radius: 18px;
+  border: 1px solid $color-bg-light;
+  box-shadow: $shaddow-light;
+}
+
+.sprint__controls {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timer-output {
+  box-shadow: $shaddow-word-card;
+  border-radius: 50%;
+  padding: 15px;
+  background-color: $color-unit-6;
+  font-size: 40px;
+  line-height: 40px;
+}
+
+.close-game-btn {
+  width: 40px;
+  height: 40px;
+  background-image: url('../../../assets/icons/close.svg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.sprint__gamefield {
+  width: 80%;
+  margin: 50px auto 0;
+}
+
+.gamefield__progress {
+  display: flex;
+  column-gap: 14px;
+  height: 40px;
+}
+
+.progres__mark {
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+}
+
+.correct-answer-mark {
+  background-image: url('../../../assets//icons/progress_star_correct.png');
+}
+
+.wrong-answer-mark {
+  background-image: url('../../../assets//icons/progress_star_wrong.png');
+}
+
+.gamefield__questions-container {
+  margin-top: 100px;
+}

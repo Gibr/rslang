@@ -1,5 +1,7 @@
 import './TextbookNav.scss';
+
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import {
   decrementCurrentUnitPage,
   incrementCurrentUnitPage,
@@ -13,6 +15,7 @@ import {
 } from '../../app/constants/global';
 import UnitsNav from '../UnitsNav/UnitsNav';
 import { IUnitsData } from '../../app/data/units';
+import AppRoutes from '../../app/constants/routes';
 
 function TextbookNav(props: { unitsData: IUnitsData }): JSX.Element {
   const { unitsData } = props;
@@ -31,6 +34,19 @@ function TextbookNav(props: { unitsData: IUnitsData }): JSX.Element {
             set: setCurrentUnitPage,
           }}
         />
+      </div>
+      <div className="textbook__game-links">
+        <NavLink to={AppRoutes.SPRINT} className="game-link sprint-link">
+          <span className="link__icon" />
+          <span className="link__text">Sprint</span>
+        </NavLink>
+        <NavLink
+          to={AppRoutes.AUDIO_CHALLENGE}
+          className="game-link audio-challenge-link"
+        >
+          <span className="link__icon" />
+          <span className="link__text">Audio-Challenge</span>
+        </NavLink>
       </div>
     </div>
   );

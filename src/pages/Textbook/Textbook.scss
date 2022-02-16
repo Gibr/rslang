@@ -6,13 +6,19 @@
   padding-top: 40px;
 }
 
-.textbook__pagination {
-  margin-top: 30px;
-  background-color: $color-bg-light;
-  padding: 10px 20px;
-  box-shadow: $shaddow-dark;
+.textbook__units {
+  flex-basis: 100%;
+  display: flex;
 }
 
-.textbook__units {
-  display: flex;
+.textbook__words {
+  margin-bottom: 30px;
+}
+
+.textbook__pagination {
+  flex-grow: 1;
+  border-radius: 10px;
+  padding: 10px 20px;
+  background-color: $color-bg-light;
+  box-shadow: $shaddow-word-card;
 }
