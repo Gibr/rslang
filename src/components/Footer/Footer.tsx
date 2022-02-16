@@ -1,6 +1,6 @@
 import React from 'react';
 import './Footer.scss';
-import { ReactComponent as RSSchcollSVG } from './icons/rs-school-js.svg';
+import { ReactComponent as RSSchcoolSVG } from './icons/rs-school-js.svg';
 import { ReactComponent as GithubSVG } from './icons/github.svg';
 import team from '../../app/data/teammate';
 
@@ -15,7 +15,7 @@ function Footer(): JSX.Element {
             target="_blank"
             rel="noreferrer"
           >
-            <RSSchcollSVG />
+            <RSSchcoolSVG />
           </a>
           <div className="footer-members">
             <ul className="footer-members__list">
@@ -37,7 +37,7 @@ function Footer(): JSX.Element {
               ))}
             </ul>
           </div>
-          <span>© 2022</span>
+          <div className="footer-copyright">© 2022</div>
         </div>
       </div>
     </footer>
