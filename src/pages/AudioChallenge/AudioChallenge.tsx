@@ -4,6 +4,7 @@ import playLogo from '../../assets/icons/audio.svg';
 import { useAppSelector } from '../../app/hooks';
 import { selectSavedURL } from '../../components/NavMenu/NavMenuSlice';
 import AppRoutes from '../../app/constants/routes';
+import AudioChallengeNav from '../../components/AudioChallengeNav/AudioChallengeNav';
 
 // const audio = new Audio();
 
@@ -46,7 +47,13 @@ function AudioChallenge(): JSX.Element {
         </div>
       </main>
     );
-  return <div>start from mainpage - menu need</div>;
+  return (
+    <main className="page-wrapper audio-challenge__page-wrapper">
+      <div className="container audio-challenge__container">
+        <AudioChallengeNav />
+      </div>
+    </main>
+  );
 }
 
 export default AudioChallenge;
