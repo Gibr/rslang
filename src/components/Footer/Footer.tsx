@@ -37,6 +37,7 @@ function Footer(): JSX.Element {
               ))}
             </ul>
           </div>
+          <span>© 2022</span>
         </div>
       </div>
     </footer>
