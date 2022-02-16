@@ -3,7 +3,7 @@
 .section {
   padding: 50px 0;
 
-  @include media-mobile-small() {
+  @include media-mobile() {
     padding: 25px 0;
   }
 

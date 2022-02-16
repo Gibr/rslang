@@ -1,14 +1,14 @@
-export interface Idvantages {
+export interface IEdvantages {
   title: string;
-  data: Array<IAdvantagesItem>;
+  data: Array<IAEdvantagesItem>;
 }
 
-export interface IAdvantagesItem {
+export interface IAEdvantagesItem {
   name: string;
   desc: string;
 }
 
-const Idvantages: Idvantages = {
+const edvantages: IEdvantages = {
   title: 'Why RSLang will be very useful and interesting for you?',
   data: [
     {
@@ -38,4 +38,4 @@ const Idvantages: Idvantages = {
   ],
 };
 
-export default Idvantages;
+export default edvantages;

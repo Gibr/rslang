@@ -3,6 +3,7 @@ import React from 'react';
 import Banner from '../../components/Banner/Banner';
 import Advantages from '../../components/Advantages/Advantages';
 import Demo from '../../components/Demo/Demo';
+import Team from '../../components/Team/Team';
 
 function MainPage(): JSX.Element {
   return (
@@ -10,6 +11,7 @@ function MainPage(): JSX.Element {
       <Banner />
       <Advantages />
       <Demo />
+      <Team />
     </main>
   );
 }

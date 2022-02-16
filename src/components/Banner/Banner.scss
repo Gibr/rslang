@@ -16,7 +16,7 @@
       width: 50%;
     }
 
-    @include media-mobile-small() {
+    @include media-mobile() {
       width: 100%;
       padding-right: 0;
       text-align: center;
@@ -28,7 +28,7 @@
     font-size: 40px;
     margin-bottom: 50px;
 
-    @include media-mobile-small() {
+    @include media-mobile() {
       font-size: 32px;
       margin-bottom: 25px;
     }
@@ -41,7 +41,7 @@
       &:not(:last-child) {
         margin-bottom: 15px;
 
-        @include media-mobile-small() {
+        @include media-mobile() {
           margin-bottom: 10px;
         }
       }
@@ -55,7 +55,7 @@
       width: 50%;
     }
 
-    @include media-mobile-small() {
+    @include media-mobile() {
       width: 100%;
       order: 1;
     }
