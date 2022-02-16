@@ -1,5 +1,6 @@
 @import '../../styles/constants.scss';
 @import '../../styles/mixins.scss';
+@import '../../styles/placeholders.scss';
 
 .form {
   background: #fff;
@@ -21,13 +22,21 @@
 
   &-text {
     font-size: 18px;
-    color: $color-unit-4;
+    color: $color-unit-6;
     line-height: 150%;
   }
 
   &-title {
     font-size: 24px;
     font-weight: bold;
-    color: $color-unit-4;
+    color: $color-unit-6;
+  }
+
+  a {
+    @extend %transition;
+
+    @include hover() {
+      color: $color-unit-4;
+    }
   }
 }

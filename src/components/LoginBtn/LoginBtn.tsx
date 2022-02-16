@@ -1,11 +1,10 @@
 import './LoginBtn.scss';
-
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { switchPopup } from './LoginBtnSlice';
+import { useAppDispatch } from '../../app/hooks';
 
 function LoginBtn() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <button

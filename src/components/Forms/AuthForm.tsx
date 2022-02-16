@@ -1,13 +1,13 @@
 import React from 'react';
 import './Form.scss';
-import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import AppRoutes from '../../app/constants/routes';
 import Input from '../Input/Input';
 import { switchPopup } from '../LoginBtn/LoginBtnSlice';
+import { useAppDispatch } from '../../app/hooks';
 
 function AuthForm(): JSX.Element {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <form action="" className="form">

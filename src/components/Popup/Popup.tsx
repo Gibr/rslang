@@ -1,11 +1,11 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import './Popup.scss';
 import AuthForm from '../Forms/AuthForm';
 import { switchPopup } from '../LoginBtn/LoginBtnSlice';
+import { useAppDispatch } from '../../app/hooks';
 
 function Popup(): JSX.Element {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <div className="popup">

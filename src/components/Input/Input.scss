@@ -1,4 +1,6 @@
 @import '../../styles/constants.scss';
+@import '../../styles/mixins.scss';
+@import '../../styles/placeholders.scss';
 
 .input {
   &-label {
@@ -15,9 +17,9 @@
         display: block;
         width: 100%;
         padding: 15px;
-        border: 1px solid $color-bg-dark;
+        border: 1px solid $color-unit-6;
         font-size: 20px;
-        transition: all 0.3s ease-in-out;
+        @extend %transition;
 
         &:focus,
         &.input-focus {
@@ -32,11 +34,17 @@
       }
 
       &[type='submit'] {
-        background-color: $color-unit-4;
-        border-color: $color-unit-4;
+        background-color: $color-unit-6;
+        border-color: $color-unit-6;
         color: $color-font-light;
         text-align: center;
         cursor: pointer;
+        @extend %transition;
+
+        @include hover() {
+          background-color: $color-unit-4;
+          border-color: $color-unit-4;
+        }
       }
     }
   }
@@ -50,7 +58,7 @@
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    transition: all 0.3s ease-in-out;
+    @extend %transition;
     pointer-events: none;
   }
 }
