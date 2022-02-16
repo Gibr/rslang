@@ -1,12 +1,6 @@
 @import '../../styles/constants.scss';
 @import '../../styles/mixins.scss';
-
-@mixin absolute-center() {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+@import '../../styles/placeholders.scss';
 
 .footer {
   background: $color-unit-6;
@@ -17,7 +11,7 @@
     justify-content: space-between;
     align-items: center;
 
-    @media screen and (max-width: 1024px) {
+    @include media-tablet() {
       padding: 15px 0;
     }
   }
@@ -25,9 +19,9 @@
   &-logo {
     display: inline-block;
     width: 100px;
-    transition: all 0.3s ease-in-out;
+    @extend %transition;
 
-    @include media-tablet {
+    @include media-tablet() {
       width: 50px;
     }
 
@@ -78,14 +72,12 @@
       position: relative;
       text-decoration: none;
       text-align: center;
-      transition: all 0.3s ease-in-out;
-
-      @media screen and (min-width: 1025px) {
-        min-width: 150px;
-      }
+      @extend %transition;
+      min-width: 150px;
 
       @include media-tablet {
         font-size: 1.5rem;
+        min-width: unset;
       }
 
       @include media-mobile {
@@ -126,6 +118,20 @@
           }
         }
       }
+    }
+  }
+
+  &-copyright {
+    font-weight: bold;
+    color: $color-font-light;
+    font-size: 20px;
+
+    @include media-tablet() {
+      font-size: 14px;
+    }
+
+    @include media-mobile-small() {
+      font-size: 10px;
     }
   }
 }
