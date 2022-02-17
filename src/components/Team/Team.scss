@@ -41,16 +41,20 @@
       margin: 0 auto 15px;
       background: $color-unit-6;
       overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
 
-      img {
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
+      &.denis {
+        background-image: url(../../assets/team/denis.png);
+      }
+
+      &.julia {
+        background-image: url(../../assets/team/julia.png);
+      }
+
+      &.aleksandr {
+        background-image: url(../../assets/team/aleksandr.png);
       }
     }
 

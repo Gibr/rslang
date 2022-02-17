@@ -18,9 +18,9 @@ function Team(): JSX.Element {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <div className="team-member__img">
-                      <img src="" alt="" />
-                    </div>
+                    <div
+                      className={`team-member__img ${item.name.toLocaleLowerCase()}`}
+                    />
                     <div className="team-member__login">@{item.login}</div>
                     <div className="team-member__name">{item.name}</div>
                     <ul className="team-member__contribution">

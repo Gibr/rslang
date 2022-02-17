@@ -40,7 +40,7 @@ function Demo(): JSX.Element {
               <iframe
                 width={demo.youtube.width}
                 height={demo.youtube.height}
-                src={`https://www.youtube.com/embed/${demo.youtube.id}`}
+                src={`https://www.youtube.com/embed/${demo.youtube.id}?autoplay=1&mute=1`}
                 title={demo.youtube.title}
                 allow={demo.youtube.allow.join('; ')}
               />
