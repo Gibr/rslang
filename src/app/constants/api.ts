@@ -5,3 +5,6 @@ export const generateWordsApiUrl = (unit: number, page: number) =>
 
 export const generateWordImageUrl = (imageName: string) =>
   `${baseUrl}/${imageName}`;
+
+export const generateWordAudioUrl = (audioName: string) =>
+  `${baseUrl}/${audioName}`;
