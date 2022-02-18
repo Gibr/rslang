@@ -11,7 +11,7 @@ function Advantages(): JSX.Element {
           <ul className="advantages__list">
             {advantages.data.map((item) => {
               return (
-                <li key={Date.now() + Math.random() * 10}>
+                <li key={item.id}>
                   <div className="advantages__item">
                     <div className="advantages__icon-wrap">
                       <div className="advantages__icon" />

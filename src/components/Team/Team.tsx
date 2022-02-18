@@ -11,7 +11,7 @@ function Team(): JSX.Element {
           <ul className="team-list">
             {teammate.map((item) => {
               return (
-                <li key={Date.now() + Math.random() * 10}>
+                <li key={item.id}>
                   <a
                     className="team-member"
                     href={item.href}
@@ -25,11 +25,7 @@ function Team(): JSX.Element {
                     <div className="team-member__name">{item.name}</div>
                     <ul className="team-member__contribution">
                       {item.contribution.map((element) => {
-                        return (
-                          <li key={Date.now() + Math.random() * 10}>
-                            {element}
-                          </li>
-                        );
+                        return <li key={element.id}>{element.unit}</li>;
                       })}
                     </ul>
                   </a>

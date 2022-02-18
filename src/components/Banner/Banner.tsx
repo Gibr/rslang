@@ -13,7 +13,7 @@ function Banner(): JSX.Element {
               <h1 className="banner__title">{banner.title}</h1>
               <div className="banner__desc">
                 {banner.desc.map((item) => {
-                  return <p key={Date.now() + Math.random() * 10}>{item}</p>;
+                  return <p key={item.id}>{item.paragraph}</p>;
                 })}
               </div>
             </div>

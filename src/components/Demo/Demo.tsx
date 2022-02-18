@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { KeyCodes } from '../../app/constants/global';
 import demo from '../../app/data/demo';
 import './Demo.scss';
 
 function Demo(): JSX.Element {
   const [value, setValue] = useState(false);
   const keyBoardSetValue = (key: string): void => {
-    if (key === '32') {
+    if (key === KeyCodes.SPACE) {
       setValue(true);
     }
   };
@@ -32,7 +33,7 @@ function Demo(): JSX.Element {
                 <img
                   className="demo-iframe__poster"
                   src={`https://i.ytimg.com/vi_webp/${demo.youtube.id}/sddefault.webp`}
-                  alt=""
+                  alt="Video preview"
                 />
                 <div className="demo-iframe__btn" />
               </div>
