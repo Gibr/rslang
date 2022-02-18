@@ -1,14 +1,16 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import textbookNavReducer from '../components/TextbookNav/textbookNavSlice';
 import popupWrapperReducer from '../components/PopupWrapper/popupWrapperSlice';
-import gameplayReducer from '../components/GameWrapper/gameplaySlice';
 import navMenuReducer from '../components/NavMenu/NavMenuSlice';
+import loginBtnReducer from '../components/LoginBtn/LoginBtnSlice';
+import gameplayReducer from '../components/GameWrapper/gameplaySlice';
 
 export const store = configureStore({
   reducer: {
     textbookNav: textbookNavReducer,
     navMenu: navMenuReducer,
     popup: popupWrapperReducer,
+    loginBtn: loginBtnReducer,
     gameplay: gameplayReducer,
   },
 });
