@@ -1,5 +1,5 @@
 import { IWordsData } from '../app/data/words';
-import { IQuestionData } from '../pages/Games/gameResultsSlice';
+import { IQuestionData } from '../components/GameWrapper/gameplaySlice';
 import { getRandomNum, shuffleArr } from '../utils/utils';
 
 const generateSprintData = (wordsData: IWordsData): IQuestionData[] => {

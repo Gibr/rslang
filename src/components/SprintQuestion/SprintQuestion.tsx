@@ -1,15 +1,17 @@
 import './SprintQuestion.scss';
 
 import React from 'react';
-import { IQuestionData } from '../../pages/Games/gameResultsSlice';
+import { IQuestionData } from '../GameWrapper/gameplaySlice';
 
-function SprintQuestion(props: {
+type Iprops = {
   wordData: IQuestionData;
   answerHandler: (
     event: React.MouseEvent<HTMLButtonElement>,
     questionData: IQuestionData
   ) => void;
-}): JSX.Element {
+};
+
+function SprintQuestion(props: Iprops): JSX.Element {
   const { wordData, answerHandler } = props;
 
   return (
@@ -29,7 +31,7 @@ function SprintQuestion(props: {
           }
           onClick={(event) => answerHandler(event, wordData)}
         >
-          Неверно
+          Wrong
         </button>
         <button
           className="question__answer-btn correct-btn"
@@ -41,7 +43,7 @@ function SprintQuestion(props: {
           }
           onClick={(event) => answerHandler(event, wordData)}
         >
-          Верно
+          Correct
         </button>
       </div>
     </div>

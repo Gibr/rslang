@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   clearGameResultsData,
   selectGameResults,
-} from '../../pages/Games/gameResultsSlice';
+} from '../GameWrapper/gameplaySlice';
 import AppRoutes from '../../app/constants/routes';
 
 function GameResultsPopup(): JSX.Element {

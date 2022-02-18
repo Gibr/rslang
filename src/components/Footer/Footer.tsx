@@ -1,5 +1,6 @@
-import React from 'react';
 import './Footer.scss';
+
+import React from 'react';
 
 function Footer(): JSX.Element {
   return <footer className="footer" />;

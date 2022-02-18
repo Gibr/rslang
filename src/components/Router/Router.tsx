@@ -4,7 +4,7 @@ import AppRoutes from '../../app/constants/routes';
 import AudioChallenge from '../../pages/AudioChallenge/AudioChallenge';
 import Auth from '../../pages/Auth/Auth';
 import MainScreen from '../../pages/MainScreen/MainScreen';
-import Sprint from '../../pages/Games/Sprint/Sprint';
+import Sprint from '../../pages/Sprint/Sprint';
 import Statistics from '../../pages/Statistics/Statistics';
 import TextBook from '../../pages/Textbook/Textbook';
 

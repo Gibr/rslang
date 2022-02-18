@@ -10,18 +10,18 @@ export type IQuestionData = {
   answered?: string;
 };
 
-type IGameResults = Array<IQuestionData>;
+type IGameplay = Array<IQuestionData>;
 
-export interface IGameResultsState {
-  resultsData: IGameResults;
+export interface IGameplayState {
+  resultsData: IGameplay;
 }
 
-const initialState: IGameResultsState = {
+const initialState: IGameplayState = {
   resultsData: [],
 };
 
-export const gameResultsSlice = createSlice({
-  name: 'gameResults',
+export const gameplaySlice = createSlice({
+  name: 'gameplay',
   initialState,
   reducers: {
     addQuestionResultData: (state, action: PayloadAction<IQuestionData>) => {
@@ -34,9 +34,9 @@ export const gameResultsSlice = createSlice({
 });
 
 export const { addQuestionResultData, clearGameResultsData } =
-  gameResultsSlice.actions;
+  gameplaySlice.actions;
 
 export const selectGameResults = (state: RootState) =>
-  state.gameResults.resultsData;
+  state.gameplay.resultsData;
 
-export default gameResultsSlice.reducer;
+export default gameplaySlice.reducer;
