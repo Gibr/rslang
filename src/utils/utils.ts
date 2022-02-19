@@ -6,6 +6,7 @@ export const getRandomNum = (min: number, max: number) => {
 };
 
 // TODO to fix "any" if possible
+// eslint-disable-next-line
 export const shuffleArr = (arr: Array<any>) => {
   return arr.sort(() => Math.random() - 0.5);
 };
