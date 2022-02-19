@@ -5,7 +5,7 @@ import getWords from '../../api/words/words';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   selectCurrentQustionIndex,
-  selectGameResults,
+  // selectGameResults,
   selectGameWordsUnit,
   selectGameWordsUnitPage,
   setQuestionsData,
@@ -22,9 +22,9 @@ function AudioChallengeGameField(): JSX.Element {
   const gameWordsUnitPage = useAppSelector(selectGameWordsUnitPage);
   const currentQuestionIndex = useAppSelector(selectCurrentQustionIndex);
   const isPopupOpened = useAppSelector(selectIsPopupOpened);
-  const results = useAppSelector(selectGameResults);
-  console.log('currentQuestionIndex - ', currentQuestionIndex);
-  console.log('results - ', results);
+  // const results = useAppSelector(selectGameResults);
+  // console.log('currentQuestionIndex - ', currentQuestionIndex);
+  // console.log('results - ', results);
 
   const [isWordsDataLoaded, setIsWordsDataLoaded] = useState(false);
   const [questions, setQuestions] = useState([] as JSX.Element[]);

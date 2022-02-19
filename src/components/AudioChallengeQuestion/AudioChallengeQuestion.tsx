@@ -2,24 +2,24 @@ import './AudioChallengeQuestion.scss';
 
 import React from 'react';
 import playLogo from '../../assets/icons/audio.svg';
-import { useAppSelector } from '../../app/hooks';
+/* import { useAppSelector } from '../../app/hooks';
 import {
   selectCurrentQustionIndex,
   selectQuestionsData,
 } from '../../pages/Games/gameplaySlice';
-import { IAudioChallengeQuestionData } from '../../services/generateGameData';
+import { IAudioChallengeQuestionData } from '../../services/generateGameData'; */
 
 function AudioChallengeQuestion(): JSX.Element {
-  const questionsData = useAppSelector(selectQuestionsData);
-  const currentQuestionIndex = useAppSelector(selectCurrentQustionIndex);
+  // const questionsData = useAppSelector(selectQuestionsData);
+  // const currentQuestionIndex = useAppSelector(selectCurrentQustionIndex);
 
   const wordsList = ['1word', '2word', '3long-long-word', '4word', '5word'];
 
-  const question = questionsData[
+  /* const question = questionsData[
     currentQuestionIndex
-  ] as IAudioChallengeQuestionData;
-  console.log('currentQuestionIndex - ', currentQuestionIndex);
-  console.log('question - ', question);
+  ] as IAudioChallengeQuestionData; */
+  // console.log('currentQuestionIndex - ', currentQuestionIndex);
+  // console.log('question - ', question);
 
   return (
     <>
