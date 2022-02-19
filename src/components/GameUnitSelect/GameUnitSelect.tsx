@@ -2,13 +2,11 @@ import './GameUnitSelect.scss';
 
 import React from 'react';
 import { unitsData } from '../../app/data/units';
+import { useAppDispatch } from '../../app/hooks';
+import { setGameWordsUnit } from '../../pages/Games/gameplaySlice';
 
-type Iprops = {
-  setSelectedUnit: React.Dispatch<React.SetStateAction<string | null>>;
-};
-
-function GameUnitSelect(props: Iprops): JSX.Element {
-  const { setSelectedUnit } = props;
+function GameUnitSelect(): JSX.Element {
+  const dispatch = useAppDispatch();
 
   return (
     <ul className="unit-select-container">
@@ -19,7 +17,7 @@ function GameUnitSelect(props: Iprops): JSX.Element {
               className="unit-select__btn"
               type="button"
               onClick={() => {
-                setSelectedUnit(unit.num.toString());
+                dispatch(setGameWordsUnit(unit.num));
               }}
             >
               UNIT {unit.num} words

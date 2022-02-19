@@ -8,15 +8,21 @@ import {
   selectCurrentUnit,
   selectCurrentUnitPage,
 } from '../TextbookNav/textbookNavSlice';
-import { saveURL } from './NavMenuSlice';
+import {
+  resetGameplayState,
+  setGameWordsUnitAndPage,
+} from '../../pages/Games/gameplaySlice';
 
 function NavMenu(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const { pathname } = useLocation();
   const currentUnit = useAppSelector(selectCurrentUnit);
   const currentUnitPage = useAppSelector(selectCurrentUnitPage);
 
-  const { pathname } = useLocation();
-  const dispatch = useAppDispatch();
-  const saveCurrentURL = () => dispatch(saveURL(pathname));
+  const defineGameplayState = () => {
+    dispatch(resetGameplayState());
+    dispatch(setGameWordsUnitAndPage(pathname));
+  };
 
   return (
     <nav className="nav-menu">
@@ -38,7 +44,7 @@ function NavMenu(): JSX.Element {
           <NavLink
             to={AppRoutes.AUDIO_CHALLENGE}
             className="nav-menu__link"
-            onClick={saveCurrentURL}
+            onClick={defineGameplayState}
           >
             Audio-Challenge
           </NavLink>
@@ -47,7 +53,7 @@ function NavMenu(): JSX.Element {
           <NavLink
             to={AppRoutes.SPRINT}
             className="nav-menu__link"
-            onClick={saveCurrentURL}
+            onClick={defineGameplayState}
           >
             Sprint
           </NavLink>
