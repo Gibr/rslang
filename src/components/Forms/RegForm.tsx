@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import './Form.scss';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import AppRoutes from '../../app/constants/routes';
 import { switchPopup } from '../LoginBtn/LoginBtnSlice';
 import Input from '../Input/Input';
 import { useAppDispatch } from '../../app/hooks';
 import createUser from '../../api/auth/registration';
 import signIn from '../../api/auth/auth';
+import { setSignIn } from './AuthFormSlice';
 
 function RegForm(): JSX.Element {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [error, setError] = useState({ isVisible: false, text: '' });
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -35,12 +37,19 @@ function RegForm(): JSX.Element {
 
       createUser({ name, email, password })
         .then(() => {
-          signIn({ email, password }).catch((err) => {
-            setError({
-              isVisible: true,
-              text: err.message,
+          signIn({ email, password })
+            .catch((err) => {
+              setError({
+                isVisible: true,
+                text: err.message,
+              });
+            })
+            .then((userData) => {
+              localStorage.setItem('userData', JSON.stringify(userData));
+              dispatch(switchPopup());
+              dispatch(setSignIn({ isSignIn: true, name: userData.name }));
+              navigate(AppRoutes.MAIN_SCREEN);
             });
-          });
         })
         .catch((err) => {
           setError({
