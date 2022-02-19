@@ -1,10 +1,12 @@
 import './LoginBtn.scss';
 import React from 'react';
 import { switchPopup } from './LoginBtnSlice';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { selectSignInData } from '../Forms/AuthFormSlice';
 
 function LoginBtn() {
   const dispatch = useAppDispatch();
+  const signInData = useAppSelector(selectSignInData);
 
   return (
     <button
@@ -15,6 +17,7 @@ function LoginBtn() {
         dispatch(switchPopup());
       }}
     >
+      {signInData.isSignIn && <span>{signInData.name}</span>}
       <span className="login-btn__icon" />
     </button>
   );

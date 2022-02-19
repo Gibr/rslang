@@ -1,7 +1,6 @@
 @import '../../styles/constants.scss';
 
 .login-btn {
-  width: 52px;
   height: 52px;
   display: flex;
   justify-content: center;
@@ -11,6 +10,7 @@
 .login-btn__icon {
   width: 46px;
   height: 46px;
+  margin-left: 10px;
   background-image: url('../../assets/icons/login.png');
   background-size: cover;
 }
