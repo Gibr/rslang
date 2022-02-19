@@ -1,5 +1,6 @@
-import React from 'react';
 import './Footer.scss';
+
+import React from 'react';
 import { ReactComponent as RSSchcoolSVG } from './icons/rs-school-js.svg';
 import { ReactComponent as GithubSVG } from './icons/github.svg';
 import team from '../../app/data/teammate';

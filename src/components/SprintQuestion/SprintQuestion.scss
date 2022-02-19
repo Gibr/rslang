@@ -1,0 +1,42 @@
+@import '../../styles//constants.scss';
+
+.game__question-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 48px;
+  line-height: 55px;
+}
+
+.question__word {
+  text-align: center;
+  font-weight: 700;
+}
+
+.question__word-translation {
+  text-align: center;
+  font-weight: 300;
+}
+
+.question__answer-btns-container {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 50px;
+}
+
+.question__answer-btn {
+  width: 170px;
+  border-radius: 8px;
+  height: 60px;
+  font-size: 28px;
+}
+
+.wrong-btn {
+  background-color: $color-unit-difficult;
+}
+
+.correct-btn {
+  background-color: $color-unit-4;
+}

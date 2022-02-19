@@ -1,17 +1,28 @@
 import './NavMenu.scss';
 
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import AppRoutes from '../../app/constants/routes';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   selectCurrentUnit,
   selectCurrentUnitPage,
 } from '../TextbookNav/textbookNavSlice';
+import {
+  resetGameplayState,
+  setGameWordsUnitAndPage,
+} from '../../pages/Games/gameplaySlice';
 
 function NavMenu(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const { pathname } = useLocation();
   const currentUnit = useAppSelector(selectCurrentUnit);
   const currentUnitPage = useAppSelector(selectCurrentUnitPage);
+
+  const defineGameplayState = () => {
+    dispatch(resetGameplayState());
+    dispatch(setGameWordsUnitAndPage(pathname));
+  };
 
   return (
     <nav className="nav-menu">
@@ -30,12 +41,20 @@ function NavMenu(): JSX.Element {
           </NavLink>
         </li>
         <li className="nav-menu__item">
-          <NavLink to={AppRoutes.AUDIO_CHALLENGE} className="nav-menu__link">
+          <NavLink
+            to={AppRoutes.AUDIO_CHALLENGE}
+            className="nav-menu__link"
+            onClick={defineGameplayState}
+          >
             Audio-Challenge
           </NavLink>
         </li>
         <li className="nav-menu__item">
-          <NavLink to={AppRoutes.SPRINT} className="nav-menu__link">
+          <NavLink
+            to={AppRoutes.SPRINT}
+            className="nav-menu__link"
+            onClick={defineGameplayState}
+          >
             Sprint
           </NavLink>
         </li>
