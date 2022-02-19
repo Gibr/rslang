@@ -29,7 +29,6 @@ function NavMenu(): JSX.Element {
 
   return (
     <nav
-      aria-label="burger"
       className={`nav-menu ${isBurgerOpened && 'nav-menu_opened'}`}
     >
       <ul className="nav-menu__list">
