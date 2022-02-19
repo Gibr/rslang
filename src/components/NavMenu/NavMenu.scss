@@ -1,15 +1,42 @@
 @import '../../styles/constants.scss';
 @import '../../styles/placeholders.scss';
+@import '../../styles/mixins.scss';
 
 .nav-menu {
+  @extend %transition;
+
+  @include media-tablet() {
+    position: fixed;
+    left: 0;
+    transform: translateX(-100%);
+    z-index: 1;
+    top: var(--header-height);
+    height: calc(100% - var(--header-height));
+  }
+
   &__list {
     padding: 0px 15px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     column-gap: 50px;
     border-radius: 10px;
     box-shadow: $shaddow-light;
+
+    @include media-tablet() {
+      height: 100%;
+      background: $color-font-light;
+      overflow: auto;
+    }
+
+    @include media-tablet() {
+      display: block;
+      padding: 15px;
+      column-gap: unset;
+      border-radius: 0;
+      box-shadow: none;
+      border-radius: 0;
+    }
   }
 
   &__link {
@@ -24,5 +51,10 @@
     &.active {
       color: $color-main;
     }
+  }
+
+  &_opened {
+    transform: translateX(0%);
+    box-shadow: $shaddow-light;
   }
 }

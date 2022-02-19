@@ -1,4 +1,5 @@
 @import './placeholders.scss';
+@import './constants.scss';
 
 html {
   scroll-behavior: smooth;
@@ -7,6 +8,28 @@ html {
 body {
   @extend %font-main;
   color: $color-font-dark;
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: $overlay-bg-color;
+    @extend %transition;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &.overflow-hidden {
+    overflow: hidden;
+
+    &::after {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 }
 
 .app-wrapper {
