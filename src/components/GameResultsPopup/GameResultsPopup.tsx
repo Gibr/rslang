@@ -1,10 +1,10 @@
 import './GameResultsPopup.scss';
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { switchPopup } from '../PopupWrapper/popupWrapperSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
+  IResultData,
   selectGameResults,
   selectQuestionsData,
 } from '../../pages/Games/gameplaySlice';
@@ -13,6 +13,8 @@ import {
   IAudioChallengeQuestionData,
   ISprintQuestionData,
 } from '../../services/generateGameData';
+import GameResult from '../GameResult/GameResult';
+import { ResultsType } from '../../app/constants/global';
 
 function GameResultsPopup(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -48,6 +50,22 @@ function GameResultsPopup(): JSX.Element {
     navigate(AppRoutes.MAIN_SCREEN);
   };
 
+  const resultsCorrect: Array<IResultData> = [];
+  const resultsWrong: Array<IResultData> = [];
+
+  totalGameResults.forEach((item) => {
+    switch (item.answered) {
+      case ResultsType.CORRECT:
+        resultsCorrect.push(item);
+        break;
+      case ResultsType.WRONG:
+        resultsWrong.push(item);
+        break;
+      default:
+        break;
+    }
+  });
+
   return (
     <>
       <button
@@ -57,7 +75,9 @@ function GameResultsPopup(): JSX.Element {
         onClick={handleClosePopupBtnClick}
       />
       <div className="popup__content game-results-popup__content">
-        {JSON.stringify(totalGameResults)}
+        <GameResult type={ResultsType.CORRECT} results={resultsCorrect} />
+        <GameResult type={ResultsType.WRONG} results={resultsWrong} />
+        {/* {JSON.stringify(totalGameResults)} */}
       </div>
     </>
   );
