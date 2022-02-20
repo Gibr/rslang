@@ -7,6 +7,7 @@ import { useAppSelector } from '../../app/hooks';
 import { selectCurrentUnit } from '../TextbookNav/textbookNavSlice';
 import { generateWordImageUrl } from '../../app/constants/api';
 import loader from '../../assets/icons/loading.gif';
+import { playPronunciation } from '../../utils/utils';
 
 function WordCard(props: { wordData: IWordData }): JSX.Element {
   const { wordData } = props;
@@ -45,6 +46,13 @@ function WordCard(props: { wordData: IWordData }): JSX.Element {
               className="word__play-btn"
               type="button"
               aria-label="pronunciation button"
+              onClick={() => {
+                playPronunciation([
+                  wordData.audio,
+                  wordData.audioMeaning,
+                  wordData.audioExample,
+                ]);
+              }}
             />
             <div className="block__item word__transcription">
               {wordData.transcription}
