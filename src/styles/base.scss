@@ -6,8 +6,10 @@ html {
 }
 
 body {
-  @extend %font-main;
+  position: relative;
+  margin-top: var(--header-height);
   color: $color-font-dark;
+  @extend %font-main;
 
   &::after {
     content: '';

@@ -15,6 +15,7 @@
 
   &-row {
     text-align: center;
+
     &:not(:last-child) {
       margin-bottom: 25px;
     }
@@ -24,6 +25,11 @@
     font-size: 18px;
     color: $color-unit-6;
     line-height: 150%;
+
+    &-error {
+      color: $color-main;
+      white-space: pre-line;
+    }
   }
 
   &-title {

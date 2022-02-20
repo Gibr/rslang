@@ -18,11 +18,14 @@
 }
 
 .header {
+  position: fixed;
   padding: 15px 0;
   width: 100%;
   background-color: $color-font-light;
-  position: relative;
   z-index: 1;
+  left: 0;
+  top: 0;
+  box-shadow: $shaddow-light;
 
   @include media-tablet() {
     padding: 10px 0;

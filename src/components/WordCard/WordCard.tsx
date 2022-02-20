@@ -2,7 +2,7 @@ import './WordCard.scss';
 
 import React, { useEffect, useState } from 'react';
 import parse from 'html-react-parser';
-import { IWordData } from '../../app/data/words';
+import { IWordData } from '../../app/types';
 import { useAppSelector } from '../../app/hooks';
 import { selectCurrentUnit } from '../TextbookNav/textbookNavSlice';
 import { generateWordImageUrl } from '../../app/constants/api';

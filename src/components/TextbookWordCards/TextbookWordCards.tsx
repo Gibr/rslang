@@ -2,7 +2,7 @@ import './TextbookWordCards.scss';
 
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { IWordsData } from '../../app/data/words';
+import { IWordsData } from '../../app/types';
 import WordCard from '../WordCard/WordCard';
 import { useAppSelector } from '../../app/hooks';
 import {
@@ -25,6 +25,7 @@ function TextbookWordCards(): JSX.Element {
       const data = await getWords(currentUnit, currentUnitPage);
       setWordsData(data);
     };
+
     fetchData();
   }, [currentUnit, currentUnitPage]);
 

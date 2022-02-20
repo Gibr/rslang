@@ -5,19 +5,18 @@ import LoginBtn from '../LoginBtn/LoginBtn';
 import Logo from '../Logo/Logo';
 import NavMenu from '../NavMenu/NavMenu';
 import Burger from '../Burger/Burger';
+import { setCssVar, getNodeHeight } from '../../utils/utils';
+import { HeaderData } from '../../app/constants/global';
 
-const getNodeHeight = (selector: string): number => {
-  const node = document.querySelector(selector);
-  return node?.clientHeight || 0;
+const setHeaderVariable = (): void => {
+  setCssVar(HeaderData.variable, `${getNodeHeight(HeaderData.selector)}px`);
 };
 
-const setCssVar = (name: string, value: string): void => {
-  document.documentElement.style.setProperty(name, value);
-};
+window.addEventListener('resize', setHeaderVariable);
 
 function Header(): JSX.Element {
   useEffect(() => {
-    setCssVar('--header-height', `${getNodeHeight('.header')}px`);
+    setHeaderVariable();
   }, []);
 
   return (

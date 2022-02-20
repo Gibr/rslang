@@ -19,9 +19,12 @@ export const BurgerSlice = createSlice({
         state.isOpened = true;
       }
     },
+    closeBurger: (state) => {
+      state.isOpened = false;
+    },
   },
 });
 
-export const { switchBurger } = BurgerSlice.actions;
+export const { switchBurger, closeBurger } = BurgerSlice.actions;
 
 export default BurgerSlice.reducer;

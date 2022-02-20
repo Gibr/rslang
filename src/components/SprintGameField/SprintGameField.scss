@@ -1,0 +1,45 @@
+@import '../../styles/constants.scss';
+
+.sprint__controls {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-game-btn {
+  width: 40px;
+  height: 40px;
+  background-image: url('../../assets/icons/close.svg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.sprint__gamefield {
+  width: 80%;
+  margin: 50px auto 0;
+}
+
+.gamefield__progress {
+  display: flex;
+  column-gap: 14px;
+  height: 40px;
+}
+
+.progres__mark {
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+}
+
+.correct-answer-mark {
+  background-image: url('../../assets//icons/progress_star_correct.png');
+}
+
+.wrong-answer-mark {
+  background-image: url('../../assets//icons/progress_star_wrong.png');
+}
+
+.gamefield__questions-container {
+  margin-top: 100px;
+}
