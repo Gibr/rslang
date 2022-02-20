@@ -10,7 +10,10 @@ import {
   selectGameWordsUnitPage,
   setQuestionsData,
 } from '../../pages/Games/gameplaySlice';
-import { selectIsPopupOpened } from '../PopupWrapper/popupWrapperSlice';
+import {
+  selectIsPopupOpened,
+  switchPopup,
+} from '../PopupWrapper/popupWrapperSlice';
 import PopupWrapper from '../PopupWrapper/PopupWrapper';
 import GameResultsPopup from '../GameResultsPopup/GameResultsPopup';
 import { generateSprintData } from '../../services/generateGameData';
@@ -49,6 +52,8 @@ function SprintGameField(): JSX.Element {
     }
   }, [dispatch, gameWordsUnit, gameWordsUnitPage]);
 
+  const handleCloseGameBtnClick = () => dispatch(switchPopup());
+
   // TODO implement game-close process
   // TODO implement keyboard game controls
 
@@ -60,6 +65,7 @@ function SprintGameField(): JSX.Element {
           className="close-game-btn"
           type="button"
           aria-label="close game"
+          onClick={handleCloseGameBtnClick}
         />
       </div>
       <div className="sprint__gamefield">
