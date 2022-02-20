@@ -10,9 +10,11 @@ export type ISprintQuestionData = {
 };
 
 export type IAudioChallengeQuestionData = {
-  // create yuor own data object type
   id: string;
   word: string;
+  wordPronunciation: string;
+  correctWordTranslation: string;
+  allAnswers: string[];
 };
 
 export const generateSprintData = (
@@ -42,12 +44,27 @@ export const generateAudioChallengeData = (
   wordsData: IWordsData
 ): IAudioChallengeQuestionData[] => {
   const audioChallengeData = [];
+  const generateAllAnswers = (currentIndex: number) => {
+    const usedIndexes = [currentIndex];
+    const allAnswers = [wordsData[currentIndex].word];
+    for (let i = 0; i < 4; i += 1) {
+      let fakeWordIndex;
+      do {
+        fakeWordIndex = Math.round(Math.random() * (wordsData.length - 1));
+      } while (usedIndexes.includes(fakeWordIndex));
+      allAnswers.push(wordsData[fakeWordIndex].word);
+      usedIndexes.push(fakeWordIndex);
+    }
+    return shuffleArr(allAnswers);
+  };
 
   for (let i = 0; i < wordsData.length; i += 1) {
     const questionData = {
       id: wordsData[i].id,
       word: wordsData[i].word,
-      // create yuor own data object
+      wordPronunciation: wordsData[i].audio,
+      correctWordTranslation: wordsData[i].wordTranslate,
+      allAnswers: generateAllAnswers(i),
     };
     audioChallengeData.push(questionData);
   }

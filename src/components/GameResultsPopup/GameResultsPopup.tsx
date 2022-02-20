@@ -9,7 +9,10 @@ import {
   selectQuestionsData,
 } from '../../pages/Games/gameplaySlice';
 import AppRoutes from '../../app/constants/routes';
-import { ISprintQuestionData } from '../../services/generateGameData';
+import {
+  IAudioChallengeQuestionData,
+  ISprintQuestionData,
+} from '../../services/generateGameData';
 
 function GameResultsPopup(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -25,16 +28,19 @@ function GameResultsPopup(): JSX.Element {
       gameQuestionsData.length
     );
 
-    unansweredQuestionsData.forEach((question) => {
-      totalGameResults.push({
-        id: question.id,
-        word: question.word,
-        wordTranslation: (question as ISprintQuestionData)
-          .correctWordTranslation,
-        wordPronunciation: (question as ISprintQuestionData).wordPronunciation,
-        answered: 'wrong',
-      });
-    });
+    unansweredQuestionsData.forEach(
+      (question: ISprintQuestionData | IAudioChallengeQuestionData) => {
+        totalGameResults.push({
+          id: question.id,
+          word: question.word,
+          wordTranslation: (question as ISprintQuestionData)
+            .correctWordTranslation,
+          wordPronunciation: (question as ISprintQuestionData)
+            .wordPronunciation,
+          answered: 'wrong',
+        });
+      }
+    );
   }
 
   const handleClosePopupBtnClick = () => {

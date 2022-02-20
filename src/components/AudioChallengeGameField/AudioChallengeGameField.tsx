@@ -5,6 +5,7 @@ import getWords from '../../api/words/words';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   selectCurrentQustionIndex,
+  selectGameResults,
   // selectGameResults,
   selectGameWordsUnit,
   selectGameWordsUnitPage,
@@ -22,7 +23,7 @@ function AudioChallengeGameField(): JSX.Element {
   const gameWordsUnitPage = useAppSelector(selectGameWordsUnitPage);
   const currentQuestionIndex = useAppSelector(selectCurrentQustionIndex);
   const isPopupOpened = useAppSelector(selectIsPopupOpened);
-  // const results = useAppSelector(selectGameResults);
+  const results = useAppSelector(selectGameResults);
   // console.log('currentQuestionIndex - ', currentQuestionIndex);
   // console.log('results - ', results);
 
@@ -51,7 +52,17 @@ function AudioChallengeGameField(): JSX.Element {
   }, [dispatch, gameWordsUnit, gameWordsUnitPage]);
 
   const content = isWordsDataLoaded ? (
-    <div className="question-wrapper">{questions[currentQuestionIndex]}</div>
+    <>
+      <div className="gamefield__progress audio-challenge__progress">
+        {results.map((questionData) => (
+          <span
+            className={`progres__mark ${questionData.answered}-answer-mark`}
+            key={questionData.id}
+          />
+        ))}
+      </div>
+      <div className="question-wrapper">{questions[currentQuestionIndex]}</div>
+    </>
   ) : (
     <div className="loading">Loading ...</div>
   );
