@@ -5,8 +5,6 @@ export const getRandomNum = (min: number, max: number) => {
   return Math.floor(Math.random() * (maxFloor - minCeil + 1)) + minCeil;
 };
 
-// TODO to fix "any" if possible
-// eslint-disable-next-line
 export const shuffleArr = <T>(arr: Array<T>): Array<T> => {
   return arr.sort(() => Math.random() - 0.5);
 };
