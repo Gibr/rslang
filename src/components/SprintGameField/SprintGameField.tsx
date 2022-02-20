@@ -15,6 +15,7 @@ import PopupWrapper from '../PopupWrapper/PopupWrapper';
 import GameResultsPopup from '../GameResultsPopup/GameResultsPopup';
 import { generateSprintData } from '../../services/generateGameData';
 import getWords from '../../api/words/words';
+import CountDown from '../CountDown/CountDown';
 
 function SprintGameField(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -48,14 +49,13 @@ function SprintGameField(): JSX.Element {
     }
   }, [dispatch, gameWordsUnit, gameWordsUnitPage]);
 
-  // TODO implement timer
   // TODO implement game-close process
   // TODO implement keyboard game controls
 
   const content = isWordsDataLoaded ? (
     <>
       <div className="sprint__controls">
-        <div className="timer-output">60</div>
+        <CountDown initialSeconds={10} />
         <button
           className="close-game-btn"
           type="button"
