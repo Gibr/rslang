@@ -1,11 +1,11 @@
 import React from 'react';
 import './GameResult.scss';
-import { IQuestionData } from '../../pages/Games/gameResultsSlice';
 import { generateWordAudioUrl } from '../../app/constants/api';
+import { IResultData } from '../../pages/Games/gameplaySlice';
 
 interface GameResultProps {
   type: string;
-  results: Array<IQuestionData>;
+  results: Array<IResultData>;
 }
 
 function GameResult(props: GameResultProps): JSX.Element {

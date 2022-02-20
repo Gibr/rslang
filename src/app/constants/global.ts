@@ -7,3 +7,6 @@ export enum ResultsType {
   CORRECT = 'correct',
   WRONG = 'wrong',
 }
+export enum KeyCodes {
+  SPACE = '32',
+}

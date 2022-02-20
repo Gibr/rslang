@@ -1,0 +1,64 @@
+@import '../../styles/constants.scss';
+@import '../../styles/mixins.scss';
+@import '../../styles/placeholders.scss';
+
+.input {
+  &-label {
+    display: block;
+    margin-bottom: 25px;
+    position: relative;
+
+    input {
+      &[type='text'],
+      &[type='email'],
+      &[type='password'],
+      &[type='submit'] {
+        border-radius: 5px;
+        display: block;
+        width: 100%;
+        padding: 15px;
+        border: 1px solid $color-unit-6;
+        font-size: 20px;
+        @extend %transition;
+
+        &:focus,
+        &.input-focus {
+          box-shadow: $shaddow-light;
+
+          & ~ .input-text {
+            top: 0;
+            transform: translateY(-50%);
+            font-size: 16px;
+          }
+        }
+      }
+
+      &[type='submit'] {
+        background-color: $color-unit-6;
+        border-color: $color-unit-6;
+        color: $color-font-light;
+        text-align: center;
+        cursor: pointer;
+        @extend %transition;
+
+        @include hover() {
+          background-color: $color-unit-4;
+          border-color: $color-unit-4;
+        }
+      }
+    }
+  }
+
+  &-text {
+    position: absolute;
+    font-size: 20px;
+    display: inline-block;
+    padding: 0 10px;
+    background: $color-font-light;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    @extend %transition;
+    pointer-events: none;
+  }
+}

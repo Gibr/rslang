@@ -21,8 +21,17 @@
     @content;
   }
 }
+
 @mixin media-mobile-small {
   @media (max-width: 424px) {
     @content;
+  }
+}
+
+@mixin hover() {
+  @media screen and (hover: hover) {
+    &:hover {
+      @content;
+    }
   }
 }
