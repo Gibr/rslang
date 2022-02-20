@@ -1,0 +1,66 @@
+@import '../../styles/constants.scss';
+@import '../../styles/mixins.scss';
+@import '../../styles/placeholders.scss';
+
+.game-result {
+  padding-bottom: 25px;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $color-pagination-border;
+  }
+
+  &__head {
+    font-size: 24px;
+    padding: 25px 0;
+  }
+
+  &__type {
+    display: inline-block;
+    margin-right: 15px;
+  }
+
+  &__count {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 5px;
+    color: $color-font-light;
+
+    &_correct {
+      background-color: $color-unit-4;
+    }
+
+    &_wrong {
+      background-color: $color-unit-difficult;
+    }
+  }
+
+  &__item {
+    font-size: 18px;
+
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__button {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    background-image: url(../../assets/icons/suund-on.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    @extend %transition;
+    margin-right: 15px;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__translate {
+    color: $color-pagination-border;
+  }
+}
