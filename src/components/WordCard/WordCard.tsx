@@ -2,18 +2,32 @@ import './WordCard.scss';
 
 import React, { useEffect, useState } from 'react';
 import parse from 'html-react-parser';
-import { IWordData } from '../../app/types';
-import { useAppSelector } from '../../app/hooks';
-import { selectCurrentUnit } from '../TextbookNav/textbookNavSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import {
+  selectCurrentUnit,
+  selectWordsData,
+  updateWordIsDifficult,
+} from '../TextbookNav/textbookNavSlice';
 import { generateWordImageUrl } from '../../app/constants/api';
 import loader from '../../assets/icons/loading.gif';
+import { selectSignInData } from '../Forms/AuthFormSlice';
+import { createUserWord, updateUserWord } from '../../api/words/words';
+import { IUserWordData, IWordData } from '../../app/types';
+import { TEXTBOOK_DIFFICULT_UNIT_NUM } from '../../app/constants/global';
 
-function WordCard(props: { wordData: IWordData }): JSX.Element {
-  const { wordData } = props;
+function WordCard(props: {
+  wordData: IWordData | IUserWordData;
+  index: number;
+}): JSX.Element {
+  const { wordData, index } = props;
 
+  const dispatch = useAppDispatch();
   const currentUnit = useAppSelector(selectCurrentUnit);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [imageSrc, setImageSrc] = useState(loader);
+
+  const wordsData = useAppSelector(selectWordsData);
+  const { isSignIn } = useAppSelector(selectSignInData);
 
   useEffect(() => {
     const fetchImage = async () => {
@@ -28,8 +42,51 @@ function WordCard(props: { wordData: IWordData }): JSX.Element {
     fetchImage();
   }, [wordData]);
 
+  const addToDifficult = () => {
+    const userData = JSON.parse(localStorage.getItem('userData') || '');
+    const { token, userId } = userData;
+    const wordOptions = { difficulty: 'hard' };
+
+    dispatch(
+      updateWordIsDifficult({
+        // eslint-disable-next-line no-underscore-dangle
+        index,
+        value: 'hard',
+      })
+    );
+
+    if ('userWord' in wordsData[index]) {
+      updateUserWord({
+        token,
+        userId,
+        // eslint-disable-next-line no-underscore-dangle
+        wordId: (wordData as IUserWordData)._id,
+        wordOptions,
+      });
+    } else {
+      createUserWord({
+        token,
+        userId,
+        // eslint-disable-next-line no-underscore-dangle
+        wordId: (wordData as IUserWordData)._id,
+        wordOptions,
+      });
+    }
+  };
+
+  const deleteFromDifficult = () => {
+    // console.log('remove');
+  };
+
+  const checkIsDifficult = () => {
+    if ('userWord' in wordData) {
+      return wordData.userWord?.difficulty === 'hard';
+    }
+    return false;
+  };
+
   return (
-    <li className="word-card">
+    <li className={`word-card${checkIsDifficult() ? ' difficult' : ''}`}>
       <div className="card__content">
         <div
           className="content__image"
@@ -75,24 +132,39 @@ function WordCard(props: { wordData: IWordData }): JSX.Element {
           </div>
         </div>
       </div>
-      <div className="card__controls">
-        <div className="statistic">
-          <span className="icon" />
-          <span className="text">12/17</span>
+      {isSignIn && (
+        <div className="card__controls">
+          <div className="statistic">
+            <span className="icon" />
+            <span className="text">12/17</span>
+          </div>
+          <div className="btns-wrap">
+            <button
+              type="button"
+              className="controls__btn learned-btn"
+              aria-label="toggle to learned"
+            />
+            <button
+              type="button"
+              className={`controls__btn ${
+                currentUnit === TEXTBOOK_DIFFICULT_UNIT_NUM
+                  ? 'difficult-remove-btn'
+                  : 'difficult-btn'
+              }`}
+              aria-label="toggle to difficult"
+              onClick={
+                currentUnit === TEXTBOOK_DIFFICULT_UNIT_NUM
+                  ? deleteFromDifficult
+                  : addToDifficult
+              }
+              disabled={
+                checkIsDifficult() &&
+                currentUnit !== TEXTBOOK_DIFFICULT_UNIT_NUM
+              }
+            />
+          </div>
         </div>
-        <div className="btns-wrap">
-          <button
-            type="button"
-            className="controls__btn learned-btn"
-            aria-label="toggle to learned"
-          />
-          <button
-            type="button"
-            className="controls__btn difficult-btn"
-            aria-label="toggle to difficult"
-          />
-        </div>
-      </div>
+      )}
     </li>
   );
 }

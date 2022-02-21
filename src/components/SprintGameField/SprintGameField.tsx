@@ -14,7 +14,7 @@ import { selectIsPopupOpened } from '../PopupWrapper/popupWrapperSlice';
 import PopupWrapper from '../PopupWrapper/PopupWrapper';
 import GameResultsPopup from '../GameResultsPopup/GameResultsPopup';
 import { generateSprintData } from '../../services/generateGameData';
-import getWords from '../../api/words/words';
+import { getWords } from '../../api/words/words';
 
 function SprintGameField(): JSX.Element {
   const dispatch = useAppDispatch();
