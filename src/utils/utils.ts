@@ -11,12 +11,13 @@ export const shuffleArr = <T>(arr: Array<T>): Array<T> => {
   return arr.sort(() => Math.random() - 0.5);
 };
 
+const audio = new Audio();
 export const playPronunciation = (
   audioFileList: Array<string>,
   initialIndex?: number
 ): void => {
   let curentIndex = initialIndex || 0;
-  const audio = new Audio(generateWordAudioUrl(audioFileList[curentIndex]));
+  audio.src = generateWordAudioUrl(audioFileList[curentIndex]);
   audio.play();
 
   if (curentIndex + 1 < audioFileList.length) {
