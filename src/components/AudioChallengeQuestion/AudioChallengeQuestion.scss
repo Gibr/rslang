@@ -25,7 +25,8 @@
 .play-button__image {
   width: 100px;
   height: 100px;
-  filter: invert(65%) sepia(26%) saturate(317%) hue-rotate(137deg) brightness(90%) contrast(90%);
+  filter: invert(65%) sepia(26%) saturate(317%) hue-rotate(137deg)
+    brightness(90%) contrast(90%);
 }
 
 .audio-challenge__words-list {
@@ -34,15 +35,42 @@
   max-width: 800px;
   width: 60%;
   margin: 40px 0px;
+
+  @include media-tablet() {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin: 40px -15px -15px;
+  }
+
+  @include media-mobile-small() {
+    margin: 40px 0 0;
+  }
 }
 
 .words-list__item {
   display: inline;
+  white-space: nowrap;
+
+  @include media-tablet() {
+    margin: 0 15px 15px;
+  }
+
+  @include media-mobile-small() {
+    width: 100%;
+    margin: 0 0 15px;
+  }
 }
 
 .words-list__variant-button {
   padding: 10px;
   border-radius: 10px;
+
+  @include media-tablet-small() {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .variant-button__number {
@@ -52,4 +80,10 @@
   margin-right: 5px;
   padding: 0 5px;
   background-color: $color-unit-4;
+}
+
+.question-wrapper {
+  @include media-tablet-small() {
+    text-align: center;
+  }
 }
