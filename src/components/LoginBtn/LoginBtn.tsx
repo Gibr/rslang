@@ -26,7 +26,9 @@ function LoginBtn() {
       onClick={signInData.isSignIn ? logOut : logIn}
     >
       {signInData.isSignIn && <span>{signInData.name}</span>}
-      <span className="login-btn__icon" />
+      <span
+        className={signInData.isSignIn ? 'logout-btn__icon' : 'login-btn__icon'}
+      />
     </button>
   );
 }
