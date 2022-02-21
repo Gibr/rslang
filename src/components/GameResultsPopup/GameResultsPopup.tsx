@@ -39,7 +39,7 @@ function GameResultsPopup(): JSX.Element {
             .correctWordTranslation,
           wordPronunciation: (question as ISprintQuestionData)
             .wordPronunciation,
-          answered: 'wrong',
+          answered: ResultsType.WRONG,
         });
       }
     );
