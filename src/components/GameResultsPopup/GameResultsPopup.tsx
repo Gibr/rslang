@@ -1,26 +1,70 @@
 import './GameResultsPopup.scss';
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { switchPopup } from '../PopupWrapper/popupWrapperSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
-  useAppDispatch,
-  // useAppSelector
-} from '../../app/hooks';
-// import { selectGameResults } from '../../pages/Games/gameplaySlice';
+  IResultData,
+  selectGameResults,
+  selectQuestionsData,
+} from '../../pages/Games/gameplaySlice';
 import AppRoutes from '../../app/constants/routes';
+import {
+  IAudioChallengeQuestionData,
+  ISprintQuestionData,
+} from '../../services/generateGameData';
+import GameResult from '../GameResult/GameResult';
+import { ResultsType } from '../../app/constants/global';
 
 function GameResultsPopup(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  // const gameResults = useAppSelector(selectGameResults);
-  // console.log(gameResults);
+  const gameQuestionsData = useAppSelector(selectQuestionsData);
+  const gameResults = useAppSelector(selectGameResults);
+  const totalGameResults = [...gameResults];
+
+  if (totalGameResults.length !== gameQuestionsData.length) {
+    const unansweredQuestionsData = gameQuestionsData.slice(
+      totalGameResults.length,
+      gameQuestionsData.length
+    );
+
+    unansweredQuestionsData.forEach(
+      (question: ISprintQuestionData | IAudioChallengeQuestionData) => {
+        totalGameResults.push({
+          id: question.id,
+          word: question.word,
+          wordTranslation: (question as ISprintQuestionData)
+            .correctWordTranslation,
+          wordPronunciation: (question as ISprintQuestionData)
+            .wordPronunciation,
+          answered: ResultsType.WRONG,
+        });
+      }
+    );
+  }
 
   const handleClosePopupBtnClick = () => {
     dispatch(switchPopup());
     navigate(AppRoutes.MAIN_SCREEN);
   };
+
+  const resultsCorrect: Array<IResultData> = [];
+  const resultsWrong: Array<IResultData> = [];
+
+  totalGameResults.forEach((item) => {
+    switch (item.answered) {
+      case ResultsType.CORRECT:
+        resultsCorrect.push(item);
+        break;
+      case ResultsType.WRONG:
+        resultsWrong.push(item);
+        break;
+      default:
+        break;
+    }
+  });
 
   return (
     <>
@@ -30,7 +74,11 @@ function GameResultsPopup(): JSX.Element {
         aria-label="close popup"
         onClick={handleClosePopupBtnClick}
       />
-      <div className="popup__content game-results-popup__content" />
+      <div className="popup__content game-results-popup__content">
+        <GameResult type={ResultsType.CORRECT} results={resultsCorrect} />
+        <GameResult type={ResultsType.WRONG} results={resultsWrong} />
+        {/* {JSON.stringify(totalGameResults)} */}
+      </div>
     </>
   );
 }

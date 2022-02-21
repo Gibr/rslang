@@ -3,6 +3,7 @@ import React from 'react';
 import { switchPopup } from './LoginBtnSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectSignInData } from '../Forms/AuthFormSlice';
+import { closeBurger } from '../Burger/BurgerSlice';
 
 function LoginBtn() {
   const dispatch = useAppDispatch();
@@ -15,6 +16,7 @@ function LoginBtn() {
       aria-label="register"
       onClick={() => {
         dispatch(switchPopup());
+        dispatch(closeBurger());
       }}
     >
       {signInData.isSignIn && <span>{signInData.name}</span>}
