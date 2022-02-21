@@ -8,3 +8,7 @@ export const generateWordImageUrl = (imageName: string) =>
 
 export const generateWordAudioUrl = (audioName: string) =>
   `${baseUrl}/${audioName}`;
+
+export enum locStorageKeys {
+  USER_DATA = 'rsLang-user-data',
+}
