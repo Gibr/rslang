@@ -1,23 +1,54 @@
 @import '../../styles/constants.scss';
+@import '../../styles/mixins.scss';
 
-.header {
-  padding-top: 18px;
-  width: 100%;
-  background-color: $color-font-light;
+/*
+* I think, we needn't to replace this @mixin to mixins.scss
+* because it is using only in Header
+*/
+@mixin margin-right() {
+  margin-right: 60px;
+
+  @include media-max-1439() {
+    margin-right: 30px;
+  }
+
+  @include media-tablet() {
+    margin-right: 0;
+  }
 }
 
-.header__container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+.header {
+  position: fixed;
+  padding: 15px 0;
+  width: 100%;
+  background-color: $color-font-light;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  box-shadow: $shaddow-light;
 
-  .logo {
-    margin-right: 60px;
+  @include media-tablet() {
+    padding: 10px 0;
+    box-shadow: $shaddow-light;
+  }
+
+  &__logo {
+    @include margin-right();
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .nav-menu {
     flex-grow: 1;
     max-width: 850px;
-    margin-right: 15px;
+    @include margin-right();
+
+    @include media-tablet() {
+      max-width: unset;
+    }
   }
 }

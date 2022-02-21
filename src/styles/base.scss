@@ -1,12 +1,37 @@
 @import './placeholders.scss';
+@import './constants.scss';
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  @extend %font-main;
+  position: relative;
+  margin-top: var(--header-height);
   color: $color-font-dark;
+  @extend %font-main;
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: $overlay-bg-color;
+    @extend %transition;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &.overflow-hidden {
+    overflow: hidden;
+
+    &::after {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 }
 
 .app-wrapper {
