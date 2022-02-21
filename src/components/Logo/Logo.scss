@@ -1,6 +1,13 @@
+@import '../../styles/mixins.scss';
+
 .logo {
   width: 142.5px;
   height: 70px;
   background-image: url('../../assets/icons/logo.svg');
   background-size: 100% 100%;
+
+  @include media-tablet() {
+    width: 71.25px;
+    height: 35px;
+  }
 }

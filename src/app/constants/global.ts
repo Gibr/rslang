@@ -10,3 +10,7 @@ export enum ResultsType {
 export enum KeyCodes {
   SPACE = '32',
 }
+export enum HeaderData {
+  variable = '--header-height',
+  selector = '.header',
+}
