@@ -2,7 +2,7 @@ import './TextbookWordCards.scss';
 
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { IUserWordsData, IWordsData } from '../../app/types';
+import { IUserWord, IWordData, IWordsData } from '../../app/types';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   selectCurrentUnit,
@@ -11,8 +11,8 @@ import {
   setWordsData,
 } from '../TextbookNav/textbookNavSlice';
 import {
+  getAllUserWords,
   getUserDifficultWords,
-  getUserWords,
   getWords,
 } from '../../api/words/words';
 import { selectSignInData } from '../Forms/AuthFormSlice';
@@ -28,18 +28,10 @@ function TextbookWordCards(): JSX.Element {
 
   const generateWords = (data: IWordsData) =>
     data.map((word, index) => (
-      <WordCard wordData={word} key={word.id} index={index} />
+      <WordCard wordData={word} key={word.word} index={index} />
     ));
 
-  const generateUserWords = (data: IUserWordsData) =>
-    data.map((word, index) => (
-      // eslint-disable-next-line no-underscore-dangle
-      <WordCard wordData={word} key={word._id} index={index} />
-    ));
-
-  const words = isSignIn
-    ? generateUserWords(wordsData as IUserWordsData)
-    : generateWords(wordsData as IWordsData);
+  const words = generateWords(wordsData);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,15 +49,23 @@ function TextbookWordCards(): JSX.Element {
 
           dispatch(setWordsData(difficultWords[0].paginatedResults));
         } else {
-          const userWordsData = await getUserWords({
-            token,
-            userId,
-            unit: currentUnit - 1,
-            page: currentUnitPage - 1,
-            wordsPerPage: 20,
+          const data = await getWords(currentUnit, currentUnitPage);
+          const userWordsData = await getAllUserWords(token, userId);
+
+          const userWords = data.map((word: IWordData) => {
+            const isInUserWords = userWordsData.find(
+              (el: IUserWord) => el.wordId === word.id
+            );
+            if (isInUserWords) {
+              return {
+                ...word,
+                difficulty: isInUserWords ? isInUserWords.difficulty : 'weak',
+              };
+            }
+            return word;
           });
 
-          dispatch(setWordsData(userWordsData[0].paginatedResults));
+          dispatch(setWordsData(userWords));
         }
       } else {
         const data = await getWords(currentUnit, currentUnitPage);

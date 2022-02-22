@@ -67,7 +67,7 @@ export const updateUserWord = async (data: ICreateUserWordParam) => {
   const rawResponse = await fetch(
     `${baseUrl}/users/${userId}/words/${wordId}`,
     {
-      method: 'POST',
+      method: 'PUT',
       credentials: 'same-origin',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -109,9 +109,7 @@ export const getUserWords = async (data: IGetUserWordsParam) => {
   const { token, userId, unit, page = 0, wordsPerPage = 3600 } = data;
 
   const rawResponse = await fetch(
-    `${baseUrl}/users/${userId}/aggregatedWords?${
-      unit !== undefined ? `group=${unit}` : ''
-    }&page=${page}&wordsPerPage=${wordsPerPage}}`,
+    `${baseUrl}/users/${userId}/aggregatedWords/?group=${unit}&page=${page}&wordsPerPage=${wordsPerPage}}`,
     {
       method: 'GET',
       credentials: 'same-origin',

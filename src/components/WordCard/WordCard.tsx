@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import parse from 'html-react-parser';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
+  deleteWordData,
   selectCurrentUnit,
   selectWordsData,
   updateWordIsDifficult,
@@ -15,19 +16,22 @@ import { createUserWord, updateUserWord } from '../../api/words/words';
 import { IUserWordData, IWordData } from '../../app/types';
 import { TEXTBOOK_DIFFICULT_UNIT_NUM } from '../../app/constants/global';
 
-function WordCard(props: {
+type IProps = {
   wordData: IWordData | IUserWordData;
   index: number;
-}): JSX.Element {
+};
+
+function WordCard(props: IProps): JSX.Element {
   const { wordData, index } = props;
+  const userData = JSON.parse(localStorage.getItem('userData') || '');
+  const { token, userId } = userData;
 
   const dispatch = useAppDispatch();
   const currentUnit = useAppSelector(selectCurrentUnit);
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const [imageSrc, setImageSrc] = useState(loader);
-
   const wordsData = useAppSelector(selectWordsData);
   const { isSignIn } = useAppSelector(selectSignInData);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [imageSrc, setImageSrc] = useState(loader);
 
   useEffect(() => {
     const fetchImage = async () => {
@@ -43,44 +47,49 @@ function WordCard(props: {
   }, [wordData]);
 
   const addToDifficult = () => {
-    const userData = JSON.parse(localStorage.getItem('userData') || '');
-    const { token, userId } = userData;
     const wordOptions = { difficulty: 'hard' };
 
     dispatch(
       updateWordIsDifficult({
-        // eslint-disable-next-line no-underscore-dangle
         index,
         value: 'hard',
       })
     );
 
-    if ('userWord' in wordsData[index]) {
+    if ('difficulty' in wordsData[index]) {
       updateUserWord({
         token,
         userId,
-        // eslint-disable-next-line no-underscore-dangle
-        wordId: (wordData as IUserWordData)._id,
+        wordId: wordData.id,
         wordOptions,
       });
     } else {
       createUserWord({
         token,
         userId,
-        // eslint-disable-next-line no-underscore-dangle
-        wordId: (wordData as IUserWordData)._id,
+        wordId: wordData.id,
         wordOptions,
       });
     }
   };
 
   const deleteFromDifficult = () => {
-    // console.log('remove');
+    const wordOptions = { difficulty: 'weak' };
+
+    updateUserWord({
+      token,
+      userId,
+      // eslint-disable-next-line no-underscore-dangle
+      wordId: (wordData as IUserWordData)._id || '',
+      wordOptions,
+    });
+
+    dispatch(deleteWordData(index));
   };
 
   const checkIsDifficult = () => {
-    if ('userWord' in wordData) {
-      return wordData.userWord?.difficulty === 'hard';
+    if ('difficulty' in wordData) {
+      return wordData.difficulty === 'hard';
     }
     return false;
   };

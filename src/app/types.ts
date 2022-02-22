@@ -13,12 +13,14 @@ export type IWordData = {
   textExampleTranslate: string;
   textMeaningTranslate: string;
   wordTranslate: string;
+  difficulty?: string;
 };
 
 export type IWordsData = IWordData[];
 
 export type IUserWordData = {
-  _id: string;
+  id: string;
+  _id?: string;
   group: number;
   page: number;
   word: string;
@@ -32,9 +34,7 @@ export type IUserWordData = {
   textExampleTranslate: string;
   textMeaningTranslate: string;
   wordTranslate: string;
-  userWord?: {
-    difficulty?: string;
-  };
+  difficulty?: string;
 };
 
 export type IUserWordsData = IUserWordData[];
@@ -51,3 +51,9 @@ export interface IQueryParams {
   key?: string;
   value?: number | string;
 }
+
+export type IUserWord = {
+  id: string;
+  difficult: string;
+  wordId: string;
+};
