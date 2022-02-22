@@ -18,4 +18,3 @@ export const generateQueryString = (queryParams: IQueryParams[] = []) => {
 
 export const generateWordAudioUrl = (audioName: string) =>
   `${baseUrl}/${audioName}`;
-
