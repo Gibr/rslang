@@ -60,7 +60,7 @@ function SprintGameField(): JSX.Element {
   const content = isWordsDataLoaded ? (
     <>
       <div className="sprint__controls">
-        <CountDown initialSeconds={10} />
+        <CountDown initialSeconds={60} />
         <button
           className="close-game-btn"
           type="button"

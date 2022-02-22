@@ -2,7 +2,7 @@ import './CountDown.scss';
 
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch } from '../../app/hooks';
-import { switchPopup } from '../PopupWrapper/popupWrapperSlice';
+import { openPopup } from '../PopupWrapper/popupWrapperSlice';
 
 function CountDown(props: { initialSeconds: number }): JSX.Element {
   const { initialSeconds = 0 } = props;
@@ -15,7 +15,7 @@ function CountDown(props: { initialSeconds: number }): JSX.Element {
       if (seconds > 0) {
         setSeconds(seconds - 1);
       } else {
-        dispatch(switchPopup());
+        dispatch(openPopup());
         clearInterval(myInterval);
       }
     }, 1000);
