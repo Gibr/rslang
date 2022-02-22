@@ -11,10 +11,12 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.85); //! take from consts
+  z-index: 10;
 }
 
 .popup-wrapper {
   padding: 0 15px;
+  overflow: hidden auto;
 }
 
 .popup__close-btn {
@@ -47,5 +49,4 @@
   }
 }
 
-.popup__content {
-}
+.popup__content {}

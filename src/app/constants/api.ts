@@ -15,3 +15,7 @@ export const generateQueryString = (queryParams: IQueryParams[] = []) => {
 
   return querry;
 };
+
+export const generateWordAudioUrl = (audioName: string) =>
+  `${baseUrl}/${audioName}`;
+
