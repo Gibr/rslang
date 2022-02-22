@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { locStorageKeys } from '../../app/constants/api';
 import type { RootState } from '../../app/store';
 
 export interface IAuthState {
@@ -6,7 +7,7 @@ export interface IAuthState {
   name: string;
 }
 
-const savedAuthData = localStorage.getItem('userData');
+const savedAuthData = localStorage.getItem(locStorageKeys.USER_DATA);
 
 const initialState: IAuthState = {
   isSignIn: !!savedAuthData,

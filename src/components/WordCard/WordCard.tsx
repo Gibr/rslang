@@ -9,12 +9,13 @@ import {
   selectWordsData,
   updateWordIsDifficult,
 } from '../TextbookNav/textbookNavSlice';
-import { generateWordImageUrl } from '../../app/constants/api';
+import { generateWordImageUrl, locStorageKeys } from '../../app/constants/api';
 import loader from '../../assets/icons/loading.gif';
 import { selectSignInData } from '../Forms/AuthFormSlice';
 import { createUserWord, updateUserWord } from '../../api/words/words';
 import { IUserWordData, IWordData } from '../../app/types';
 import { TEXTBOOK_DIFFICULT_UNIT_NUM } from '../../app/constants/global';
+import { playPronunciation } from '../../utils/utils';
 
 type IProps = {
   wordData: IWordData | IUserWordData;
@@ -45,7 +46,9 @@ function WordCard(props: IProps): JSX.Element {
   }, [wordData]);
 
   const addToDifficult = () => {
-    const userData = JSON.parse(localStorage.getItem('userData') || '');
+    const userData = JSON.parse(
+      localStorage.getItem(locStorageKeys.USER_DATA) || ''
+    );
     const { token, userId } = userData;
     const wordOptions = { difficulty: 'hard' };
 
@@ -74,7 +77,9 @@ function WordCard(props: IProps): JSX.Element {
   };
 
   const deleteFromDifficult = () => {
-    const userData = JSON.parse(localStorage.getItem('userData') || '');
+    const userData = JSON.parse(
+      localStorage.getItem(locStorageKeys.USER_DATA) || ''
+    );
     const { token, userId } = userData;
     const wordOptions = { difficulty: 'weak' };
 
@@ -113,6 +118,13 @@ function WordCard(props: IProps): JSX.Element {
               className="word__play-btn"
               type="button"
               aria-label="pronunciation button"
+              onClick={() => {
+                playPronunciation([
+                  wordData.audio,
+                  wordData.audioMeaning,
+                  wordData.audioExample,
+                ]);
+              }}
             />
             <div className="block__item word__transcription">
               {wordData.transcription}

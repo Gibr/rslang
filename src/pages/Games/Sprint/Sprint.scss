@@ -1,4 +1,5 @@
 @import '../../../styles/constants.scss';
+@import '../../../styles/mixins.scss';
 
 .sprint__page-wrapper {
   display: flex;
@@ -7,10 +8,22 @@
 }
 
 .sprint__container {
-  width: 1400px;
+  flex-grow: 1;
+  margin: 0 18px;
   padding: 50px;
   padding-bottom: 100px;
   border-radius: 18px;
   border: 1px solid $color-bg-light;
   box-shadow: $shaddow-light;
+
+  @include media-tablet-small() {
+    padding: 25px;
+  }
+
+  .sprint__container {
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
 }

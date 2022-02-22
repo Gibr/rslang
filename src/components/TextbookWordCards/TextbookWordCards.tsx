@@ -18,6 +18,7 @@ import {
 import { selectSignInData } from '../Forms/AuthFormSlice';
 import WordCard from '../WordCard/WordCard';
 import { TEXTBOOK_DIFFICULT_UNIT_NUM } from '../../app/constants/global';
+import { locStorageKeys } from '../../app/constants/api';
 
 function TextbookWordCards(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -37,7 +38,7 @@ function TextbookWordCards(): JSX.Element {
     const fetchData = async () => {
       if (isSignIn) {
         const { token, userId } = JSON.parse(
-          localStorage.getItem('userData') || ''
+          localStorage.getItem(locStorageKeys.USER_DATA) || ''
         );
 
         if (currentUnit === TEXTBOOK_DIFFICULT_UNIT_NUM) {

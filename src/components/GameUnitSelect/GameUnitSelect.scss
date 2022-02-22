@@ -1,8 +1,49 @@
+@import '../../styles/constants.scss';
+
 .unit-select-container {
   display: flex;
   flex-direction: column;
+  text-align: center;
+
+  & > li {
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+
+    &:nth-child(1) .unit-select__btn {
+      color: $color-unit-1;
+    }
+
+    &:nth-child(2) .unit-select__btn {
+      color: $color-unit-2;
+    }
+
+    &:nth-child(3) .unit-select__btn {
+      color: $color-unit-3;
+    }
+
+    &:nth-child(4) .unit-select__btn {
+      color: $color-unit-4;
+    }
+
+    &:nth-child(5) .unit-select__btn {
+      color: $color-unit-5;
+    }
+
+    &:nth-child(6) .unit-select__btn {
+      color: $color-unit-6;
+    }
+  }
 }
+
 .unit-select {
 }
+
 .unit-select__btn {
+  font-size: 24px;
+  font-weight: bold;
+
+  &:hover {
+    color: $color-main !important;
+  }
 }

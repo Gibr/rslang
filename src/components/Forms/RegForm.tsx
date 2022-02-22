@@ -8,6 +8,7 @@ import { useAppDispatch } from '../../app/hooks';
 import createUser from '../../api/auth/registration';
 import signIn from '../../api/auth/auth';
 import { setSignIn } from './AuthFormSlice';
+import { locStorageKeys } from '../../app/constants/api';
 
 function RegForm(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -45,7 +46,10 @@ function RegForm(): JSX.Element {
               });
             })
             .then((userData) => {
-              localStorage.setItem('userData', JSON.stringify(userData));
+              localStorage.setItem(
+                locStorageKeys.USER_DATA,
+                JSON.stringify(userData)
+              );
               dispatch(switchPopup());
               dispatch(setSignIn({ isSignIn: true, name: userData.name }));
               navigate(AppRoutes.MAIN_SCREEN);

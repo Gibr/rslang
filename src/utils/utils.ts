@@ -1,3 +1,5 @@
+import { generateWordAudioUrl } from '../app/constants/api';
+
 export const getRandomNum = (min: number, max: number) => {
   const minCeil = Math.ceil(min);
   const maxFloor = Math.floor(max);
@@ -7,6 +9,23 @@ export const getRandomNum = (min: number, max: number) => {
 
 export const shuffleArr = <T>(arr: Array<T>): Array<T> => {
   return arr.sort(() => Math.random() - 0.5);
+};
+
+const audio = new Audio();
+export const playPronunciation = (
+  audioFileList: Array<string>,
+  initialIndex?: number
+): void => {
+  let curentIndex = initialIndex || 0;
+  audio.src = generateWordAudioUrl(audioFileList[curentIndex]);
+  audio.play();
+
+  if (curentIndex + 1 < audioFileList.length) {
+    audio.onended = () => {
+      audio.src = generateWordAudioUrl(audioFileList[(curentIndex += 1)]);
+      audio.play();
+    };
+  }
 };
 
 export const getNodeHeight = (selector: string): number => {

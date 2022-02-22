@@ -7,6 +7,7 @@ import { switchPopup } from '../LoginBtn/LoginBtnSlice';
 import { useAppDispatch } from '../../app/hooks';
 import signIn from '../../api/auth/auth';
 import { setSignIn } from './AuthFormSlice';
+import { locStorageKeys } from '../../app/constants/api';
 
 function AuthForm(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -24,7 +25,10 @@ function AuthForm(): JSX.Element {
 
     signIn({ email, password })
       .then((userData) => {
-        localStorage.setItem('userData', JSON.stringify(userData));
+        localStorage.setItem(
+          locStorageKeys.USER_DATA,
+          JSON.stringify(userData)
+        );
         dispatch(switchPopup());
         dispatch(setSignIn({ isSignIn: true, name: userData.name }));
         navigate(AppRoutes.MAIN_SCREEN);
