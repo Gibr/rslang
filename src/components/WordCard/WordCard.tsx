@@ -23,8 +23,6 @@ type IProps = {
 
 function WordCard(props: IProps): JSX.Element {
   const { wordData, index } = props;
-  const userData = JSON.parse(localStorage.getItem('userData') || '');
-  const { token, userId } = userData;
 
   const dispatch = useAppDispatch();
   const currentUnit = useAppSelector(selectCurrentUnit);
@@ -47,6 +45,8 @@ function WordCard(props: IProps): JSX.Element {
   }, [wordData]);
 
   const addToDifficult = () => {
+    const userData = JSON.parse(localStorage.getItem('userData') || '');
+    const { token, userId } = userData;
     const wordOptions = { difficulty: 'hard' };
 
     dispatch(
@@ -74,6 +74,8 @@ function WordCard(props: IProps): JSX.Element {
   };
 
   const deleteFromDifficult = () => {
+    const userData = JSON.parse(localStorage.getItem('userData') || '');
+    const { token, userId } = userData;
     const wordOptions = { difficulty: 'weak' };
 
     updateUserWord({
