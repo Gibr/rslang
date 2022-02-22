@@ -17,8 +17,10 @@ import {
 import PopupWrapper from '../PopupWrapper/PopupWrapper';
 import GameResultsPopup from '../GameResultsPopup/GameResultsPopup';
 import { generateSprintData } from '../../services/generateGameData';
-import { getWords } from '../../api/words/words';
+import { getUserDifficultWords, getWords } from '../../api/words/words';
 import CountDown from '../CountDown/CountDown';
+import { TEXTBOOK_DIFFICULT_UNIT_NUM } from '../../app/constants/global';
+import { locStorageKeys } from '../../app/constants/api';
 
 function SprintGameField(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -33,7 +35,22 @@ function SprintGameField(): JSX.Element {
 
   useEffect(() => {
     const fetchWordsData = async (unit: number, page: number) => {
-      const wordsData = await getWords(unit, page);
+      let wordsData;
+
+      if (unit === TEXTBOOK_DIFFICULT_UNIT_NUM) {
+        const { token, userId } = JSON.parse(
+          localStorage.getItem(locStorageKeys.USER_DATA) || ''
+        );
+        const res = await getUserDifficultWords({
+          token,
+          userId,
+          page: page - 1,
+        });
+
+        wordsData = res[0].paginatedResults;
+      } else {
+        wordsData = await getWords(unit, page);
+      }
 
       setIsWordsDataLoaded(true);
 

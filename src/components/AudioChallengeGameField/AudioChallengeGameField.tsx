@@ -1,12 +1,11 @@
 import './AudioChallengeGameField.scss';
 
 import React, { useEffect, useState } from 'react';
-import { getWords } from '../../api/words/words';
+import { getUserDifficultWords, getWords } from '../../api/words/words';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   selectCurrentQustionIndex,
   selectGameResults,
-  // selectGameResults,
   selectGameWordsUnit,
   selectGameWordsUnitPage,
   setQuestionsData,
@@ -16,6 +15,8 @@ import PopupWrapper from '../PopupWrapper/PopupWrapper';
 import GameResultsPopup from '../GameResultsPopup/GameResultsPopup';
 import { generateAudioChallengeData } from '../../services/generateGameData';
 import AudioChallengeQuestion from '../AudioChallengeQuestion/AudioChallengeQuestion';
+import { TEXTBOOK_DIFFICULT_UNIT_NUM } from '../../app/constants/global';
+import { locStorageKeys } from '../../app/constants/api';
 
 function AudioChallengeGameField(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -24,15 +25,28 @@ function AudioChallengeGameField(): JSX.Element {
   const currentQuestionIndex = useAppSelector(selectCurrentQustionIndex);
   const isPopupOpened = useAppSelector(selectIsPopupOpened);
   const results = useAppSelector(selectGameResults);
-  // console.log('currentQuestionIndex - ', currentQuestionIndex);
-  // console.log('results - ', results);
 
   const [isWordsDataLoaded, setIsWordsDataLoaded] = useState(false);
   const [questions, setQuestions] = useState([] as JSX.Element[]);
 
   useEffect(() => {
     const fetchWordsData = async (unit: number, page: number) => {
-      const wordsData = await getWords(unit, page);
+      let wordsData;
+
+      if (unit === TEXTBOOK_DIFFICULT_UNIT_NUM) {
+        const { token, userId } = JSON.parse(
+          localStorage.getItem(locStorageKeys.USER_DATA) || ''
+        );
+        const res = await getUserDifficultWords({
+          token,
+          userId,
+          page: page - 1,
+        });
+
+        wordsData = res[0].paginatedResults;
+      } else {
+        wordsData = await getWords(unit, page);
+      }
 
       setIsWordsDataLoaded(true);
 
