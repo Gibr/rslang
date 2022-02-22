@@ -1,7 +1,7 @@
 import './AudioChallengeGameField.scss';
 
 import React, { useEffect, useState } from 'react';
-import getWords from '../../api/words/words';
+import { getWords } from '../../api/words/words';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   selectCurrentQustionIndex,

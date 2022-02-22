@@ -17,7 +17,7 @@ import {
 import PopupWrapper from '../PopupWrapper/PopupWrapper';
 import GameResultsPopup from '../GameResultsPopup/GameResultsPopup';
 import { generateSprintData } from '../../services/generateGameData';
-import getWords from '../../api/words/words';
+import { getWords } from '../../api/words/words';
 import CountDown from '../CountDown/CountDown';
 
 function SprintGameField(): JSX.Element {
