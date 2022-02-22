@@ -11,6 +11,11 @@ type IUpdateWordIsDifficult = {
   index: number;
   value: string;
 };
+
+type IUpdateWordIsLearned = {
+  index: number;
+  value: boolean;
+};
 export interface ITextbookNavState {
   currentUnit: number;
   currentUnitPage: number;
@@ -63,6 +68,16 @@ export const textbookNavSlice = createSlice({
         difficulty: value,
       };
     },
+    updateWordIsLearned: (
+      state,
+      action: PayloadAction<IUpdateWordIsLearned>
+    ) => {
+      const { index, value } = action.payload;
+      state.wordsData[index] = {
+        ...state.wordsData[index],
+        learned: value,
+      };
+    },
     deleteWordData: (state, action: PayloadAction<number>) => {
       state.wordsData.splice(action.payload, 1);
     },
@@ -76,6 +91,7 @@ export const {
   setCurrentUnitPage,
   setWordsData,
   updateWordIsDifficult,
+  updateWordIsLearned,
   deleteWordData,
 } = textbookNavSlice.actions;
 
