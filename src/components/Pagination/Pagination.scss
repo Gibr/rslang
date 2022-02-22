@@ -1,4 +1,5 @@
 @import '../../styles/constants.scss';
+@import '../../styles/mixins.scss';
 
 .pagination {
   display: flex;
@@ -27,6 +28,11 @@
   padding-bottom: 5px;
   border-radius: 8px;
   border: 1px solid $color-pagination-border;
+
+  @include media-mobile-small() {
+    width: 34px;
+    height: 34px;
+  }
 
   &.current-page {
     background-color: $color-pagination-bg;
