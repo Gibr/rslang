@@ -20,10 +20,13 @@ export const popupWrapperSlice = createSlice({
         state.isOpened = true;
       }
     },
+    openPopup: (state) => {
+      state.isOpened = true;
+    },
   },
 });
 
-export const { switchPopup } = popupWrapperSlice.actions;
+export const { switchPopup, openPopup } = popupWrapperSlice.actions;
 
 export const selectIsPopupOpened = (state: RootState) => state.popup.isOpened;
 
