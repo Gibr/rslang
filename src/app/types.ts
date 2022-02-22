@@ -14,6 +14,7 @@ export type IWordData = {
   textMeaningTranslate: string;
   wordTranslate: string;
   difficulty?: string;
+  learned?: boolean;
 };
 
 export type IWordsData = IWordData[];
@@ -40,9 +41,9 @@ export type IUserWordData = {
 export type IUserWordsData = IUserWordData[];
 
 export type IUserWordRequestBody = {
-  difficulty: string;
+  difficulty?: string;
   optional?: {
-    new?: boolean;
+    learned?: boolean;
     answers?: string[];
   };
 };

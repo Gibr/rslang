@@ -61,6 +61,10 @@ function TextbookWordCards(): JSX.Element {
               return {
                 ...word,
                 difficulty: isInUserWords ? isInUserWords.difficulty : 'weak',
+                learned:
+                  isInUserWords && 'optional' in isInUserWords
+                    ? isInUserWords.optional.learned
+                    : false,
               };
             }
             return word;

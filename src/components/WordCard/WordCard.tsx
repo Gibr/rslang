@@ -8,6 +8,7 @@ import {
   selectCurrentUnit,
   selectWordsData,
   updateWordIsDifficult,
+  updateWordIsLearned,
 } from '../TextbookNav/textbookNavSlice';
 import { generateWordImageUrl, locStorageKeys } from '../../app/constants/api';
 import loader from '../../assets/icons/loading.gif';
@@ -76,6 +77,33 @@ function WordCard(props: IProps): JSX.Element {
     }
   };
 
+  const addToLearned = () => {
+    const userData = JSON.parse(
+      localStorage.getItem(locStorageKeys.USER_DATA) || ''
+    );
+    const { token, userId } = userData;
+    const wordOptions = { difficulty: 'weak', optional: { learned: true } };
+
+    dispatch(updateWordIsDifficult({ index, value: 'weak' }));
+    dispatch(updateWordIsLearned({ index, value: true }));
+
+    if ('learned' in wordsData[index] || 'difficult' in wordsData[index]) {
+      updateUserWord({
+        token,
+        userId,
+        wordId: wordData.id,
+        wordOptions,
+      });
+    } else {
+      createUserWord({
+        token,
+        userId,
+        wordId: wordData.id,
+        wordOptions,
+      });
+    }
+  };
+
   const deleteFromDifficult = () => {
     const userData = JSON.parse(
       localStorage.getItem(locStorageKeys.USER_DATA) || ''
@@ -94,6 +122,24 @@ function WordCard(props: IProps): JSX.Element {
     dispatch(deleteWordData(index));
   };
 
+  const deleteFromLearned = () => {
+    const userData = JSON.parse(
+      localStorage.getItem(locStorageKeys.USER_DATA) || ''
+    );
+    const { token, userId } = userData;
+    const wordOptions = { optional: { learned: false } };
+
+    updateUserWord({
+      token,
+      userId,
+      // eslint-disable-next-line no-underscore-dangle
+      wordId: wordData.id || (wordData as IUserWordData)._id || '',
+      wordOptions,
+    });
+
+    dispatch(updateWordIsLearned({ index, value: false }));
+  };
+
   const checkIsDifficult = () => {
     if ('difficulty' in wordData) {
       return wordData.difficulty === 'hard';
@@ -101,8 +147,19 @@ function WordCard(props: IProps): JSX.Element {
     return false;
   };
 
+  const checkIsLearned = () => {
+    if ('learned' in wordData) {
+      return wordData.learned;
+    }
+    return false;
+  };
+
   return (
-    <li className={`word-card${checkIsDifficult() ? ' difficult' : ''}`}>
+    <li
+      className={`word-card${checkIsDifficult() ? ' difficult' : ''}${
+        checkIsLearned() ? ' learned' : ''
+      }`}
+    >
       <div className="card__content">
         <div
           className="content__image"
@@ -164,8 +221,11 @@ function WordCard(props: IProps): JSX.Element {
           <div className="btns-wrap">
             <button
               type="button"
-              className="controls__btn learned-btn"
+              className={`controls__btn ${
+                checkIsLearned() ? 'learned-remove-btn' : 'learned-btn'
+              }`}
               aria-label="toggle to learned"
+              onClick={checkIsLearned() ? deleteFromLearned : addToLearned}
             />
             <button
               type="button"
