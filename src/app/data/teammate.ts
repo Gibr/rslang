@@ -24,11 +24,11 @@ const team: Array<ITeamMate> = [
       },
       {
         id: 'e1645208988044',
-        unit: 'Unit-1',
+        unit: 'Login/Registration',
       },
       {
         id: 'f1645209011483',
-        unit: 'Unit-2',
+        unit: 'Audio-challenge',
       },
     ],
   },
@@ -40,11 +40,19 @@ const team: Array<ITeamMate> = [
     contribution: [
       {
         id: 'g1645209041959',
-        unit: 'Unit-3',
+        unit: 'Textbook',
       },
       {
         id: 'h1645209051044',
-        unit: 'Unit-4',
+        unit: 'Sprint',
+      },
+      {
+        id: 'f1645209011483',
+        unit: 'Words-API',
+      },
+      {
+        id: 'i1645209083026',
+        unit: 'Difficult & learned words',
       },
     ],
   },
@@ -56,11 +64,15 @@ const team: Array<ITeamMate> = [
     contribution: [
       {
         id: 'i1645209083026',
-        unit: 'Unit-5',
+        unit: 'Main page',
       },
       {
         id: 'j1645209103643',
-        unit: 'Unit-6',
+        unit: 'Forms/popups',
+      },
+      {
+        id: 'f1645209011483',
+        unit: 'Style & adaptive',
       },
     ],
   },
