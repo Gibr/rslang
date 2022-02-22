@@ -1,7 +1,7 @@
 import React from 'react';
 import './GameResult.scss';
-import { generateWordAudioUrl } from '../../app/constants/api';
 import { IResultData } from '../../pages/Games/gameplaySlice';
+import { playPronunciation } from '../../utils/utils';
 
 interface GameResultProps {
   type: string;
@@ -10,10 +10,6 @@ interface GameResultProps {
 
 function GameResult(props: GameResultProps): JSX.Element {
   const { type, results } = props;
-
-  const getPronunciation = (wordPronunciation: string): void => {
-    new Audio(generateWordAudioUrl(wordPronunciation)).play();
-  };
 
   return (
     <div className="game-result">
@@ -31,8 +27,8 @@ function GameResult(props: GameResultProps): JSX.Element {
                 className="game-result__button"
                 type="button"
                 aria-label="audio"
-                onClick={(e) => {
-                  getPronunciation(item.wordPronunciation);
+                onClick={() => {
+                  playPronunciation([item.wordPronunciation]);
                 }}
               />
               <span className="game-result__word">{item.word}</span>
