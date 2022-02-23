@@ -12,6 +12,7 @@ import {
 import { IAudioChallengeQuestionData } from '../../services/generateGameData';
 import { baseUrl } from '../../app/constants/api';
 import { switchPopup } from '../PopupWrapper/popupWrapperSlice';
+import { ResultsType } from '../../app/constants/global';
 
 const audio = new Audio();
 
@@ -59,7 +60,9 @@ function AudioChallengeQuestion(): JSX.Element {
             <button
               className="words-list__variant-button audio-challenge__button"
               type="button"
-              data-answer={question.word === el ? 'correct' : 'wrong'}
+              data-answer={
+                question.word === el ? ResultsType.CORRECT : ResultsType.WRONG
+              }
               onClick={handleAnswerBtnClick}
             >
               <span className="variant-button__number">{index + 1}</span>

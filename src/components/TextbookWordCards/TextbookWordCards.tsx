@@ -13,7 +13,6 @@ import {
 import { getWords } from '../../api/words/words';
 import { selectSignInData } from '../Forms/AuthFormSlice';
 import WordCard from '../WordCard/WordCard';
-
 import { getUserWordsData } from '../../services/generateGameData';
 
 function TextbookWordCards(): JSX.Element {

@@ -82,7 +82,11 @@ function SprintGameField(): JSX.Element {
           ))}
         </div>
         <div className="gamefield__questions-container">
-          {questions[currentQuestionIndex]}
+          {questions.length ? (
+            questions[currentQuestionIndex]
+          ) : (
+            <div className="no-words-message">No words to play</div>
+          )}
         </div>
       </div>
     </>

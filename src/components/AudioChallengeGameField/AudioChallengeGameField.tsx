@@ -5,7 +5,6 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   selectCurrentQustionIndex,
   selectGameResults,
-  // selectGameResults,
   selectGameWordsUnit,
   selectGameWordsUnitPage,
   setQuestionsData,
@@ -28,8 +27,6 @@ function AudioChallengeGameField(): JSX.Element {
   const isPopupOpened = useAppSelector(selectIsPopupOpened);
   const results = useAppSelector(selectGameResults);
   const { isSignIn } = useAppSelector(selectSignInData);
-  // console.log('currentQuestionIndex - ', currentQuestionIndex);
-  // console.log('results - ', results);
 
   const [isWordsDataLoaded, setIsWordsDataLoaded] = useState(false);
   const [questions, setQuestions] = useState([] as JSX.Element[]);
@@ -42,11 +39,8 @@ function AudioChallengeGameField(): JSX.Element {
         page,
         generateGameData: generateAudioChallengeData,
       });
-      // const wordsData = await getWords(unit, page);
 
       setIsWordsDataLoaded(true);
-
-      // const questionsData = generateAudioChallengeData(wordsData);
       dispatch(setQuestionsData(questionsData));
 
       setQuestions(
@@ -71,7 +65,13 @@ function AudioChallengeGameField(): JSX.Element {
           />
         ))}
       </div>
-      <div className="question-wrapper">{questions[currentQuestionIndex]}</div>
+      <div className="question-wrapper">
+        {questions.length ? (
+          questions[currentQuestionIndex]
+        ) : (
+          <div className="no-words-message">No words to play</div>
+        )}
+      </div>
     </>
   ) : (
     <div className="loading">Loading ...</div>
