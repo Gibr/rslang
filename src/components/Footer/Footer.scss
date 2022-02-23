@@ -1,0 +1,138 @@
+@import '../../styles/constants.scss';
+@import '../../styles/mixins.scss';
+@import '../../styles/placeholders.scss';
+
+.footer {
+  background: $color-unit-6;
+  margin-top: 30px;
+
+  &-container {
+    padding: 25px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include media-tablet() {
+      padding: 15px 0;
+    }
+  }
+
+  &-logo {
+    display: inline-block;
+    width: 100px;
+    @extend %transition;
+
+    @include media-tablet() {
+      width: 50px;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    &:active {
+      transform: scale(1.1);
+    }
+
+    @include hover() {
+      opacity: 0.75;
+    }
+  }
+
+  &-members {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin: 0 auto;
+
+      li {
+        &:not(:last-child) {
+          margin-right: 100px;
+
+          @include media-tablet {
+            margin-right: 55px;
+          }
+
+          @include media-mobile {
+            margin-right: 15px;
+          }
+        }
+      }
+    }
+
+    &__item {
+      display: inline-block;
+      font-size: 2rem;
+      color: $color-font-light;
+      position: relative;
+      text-decoration: none;
+      text-align: center;
+      @extend %transition;
+      min-width: 150px;
+
+      @include media-tablet {
+        font-size: 1.5rem;
+        min-width: unset;
+      }
+
+      @include media-mobile {
+        font-size: 1rem;
+      }
+
+      span {
+        display: inline-block;
+        transition: inherit;
+
+        &.hover {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%) scale(0.5);
+          opacity: 0;
+          white-space: nowrap;
+
+          svg {
+            display: inline-block;
+            margin-right: 10px;
+            width: 25px;
+            height: auto;
+          }
+        }
+      }
+
+      @include hover() {
+        span {
+          &:not(.hover) {
+            transform: scale(0.5);
+            opacity: 0;
+          }
+
+          &.hover {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  &-copyright {
+    font-weight: bold;
+    color: $color-font-light;
+    font-size: 20px;
+
+    @include media-tablet() {
+      font-size: 14px;
+    }
+
+    @include media-mobile-small() {
+      font-size: 10px;
+    }
+  }
+}

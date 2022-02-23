@@ -1,0 +1,54 @@
+@import '../../styles/constants.scss';
+@import '../../styles/mixins.scss';
+
+/*
+* I think, we needn't to replace this @mixin to mixins.scss
+* because it is using only in Header
+*/
+@mixin margin-right() {
+  margin-right: 60px;
+
+  @include media-max-1439() {
+    margin-right: 30px;
+  }
+
+  @include media-tablet() {
+    margin-right: 0;
+  }
+}
+
+.header {
+  position: fixed;
+  padding: 15px 0;
+  width: 100%;
+  background-color: $color-font-light;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  box-shadow: $shaddow-light;
+
+  @include media-tablet() {
+    padding: 10px 0;
+    box-shadow: $shaddow-light;
+  }
+
+  &__logo {
+    @include margin-right();
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-menu {
+    flex-grow: 1;
+    max-width: 850px;
+    @include margin-right();
+
+    @include media-tablet() {
+      max-width: unset;
+    }
+  }
+}

@@ -1,0 +1,221 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/constants.scss';
+
+.word-card {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  justify-content: space-between;
+  width: calc((100% - 75px) / 4);
+  box-shadow: $shaddow-word-card;
+  font-size: 20px;
+
+  @include media-max-1439 {
+    width: calc((100% - 50px) / 3);
+  }
+
+  @include media-tablet {
+    width: calc((100% - 25px) / 2);
+  }
+
+  @include media-tablet-small {
+    width: 100%;
+  }
+
+  &.selected {
+    border: none;
+  }
+
+  &.learned {
+    background-color: $color-word-card-bg-learned;
+    .learned-btn {
+      background-image: url('../../assets/icons/remove-learned.svg');
+    }
+  }
+
+  &.difficult {
+    background-color: $color-word-card-bg-difficult;
+
+    .difficult-btn {
+      background-image: url('../../assets/icons/checked-difficult.svg');
+    }
+  }
+
+  .card__content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    column-gap: 20px;
+    row-gap: 8px;
+  }
+
+  .content__image {
+    width: 100%;
+    height: 220px;
+    box-shadow: $shaddow-light;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    @include media-tablet-small {
+      height: 300px;
+    }
+
+    @include media-mobile {
+      height: 220px;
+    }
+  }
+
+  .content__text {
+    flex-grow: 1;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .word-block {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 10px;
+    padding: 0 10px;
+  }
+
+  .original {
+    &__icon {
+      color: $color-font-dark;
+      font-size: 26px;
+      font-weight: 700;
+      margin-right: 5px;
+    }
+  }
+
+  .translation {
+    font-weight: 300;
+  }
+
+  .word__original {
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .word__transcription {
+    font-size: 20px;
+    flex-basis: 100%;
+  }
+
+  .word__play-btn {
+    width: 22px;
+    height: 22px;
+    background-image: url('../../assets/icons/suund-on.png');
+    background-size: 100% 100%;
+  }
+
+  .word__translation {
+    font-size: 22px;
+    flex-basis: 100%;
+  }
+
+  .meaning-block {
+    margin-top: 12px;
+    padding: 5px 10px;
+
+    &.color-unit-1 {
+      border-top: 4px solid $color-unit-1;
+    }
+    &.color-unit-2 {
+      border-top: 4px solid $color-unit-2;
+    }
+    &.color-unit-3 {
+      border-top: 4px solid $color-unit-3;
+    }
+    &.color-unit-4 {
+      border-top: 4px solid $color-unit-4;
+    }
+    &.color-unit-5 {
+      border-top: 4px solid $color-unit-5;
+    }
+    &.color-unit-6 {
+      border-top: 4px solid $color-unit-6;
+    }
+    &.color-unit-7 {
+      border-top: 4px solid $color-unit-difficult;
+    }
+  }
+
+  .example-block {
+    flex-grow: 1;
+    padding: 10px 10px;
+
+    &.color-unit-1 {
+      border-bottom: 4px solid $color-unit-1;
+    }
+    &.color-unit-2 {
+      border-bottom: 4px solid $color-unit-2;
+    }
+    &.color-unit-3 {
+      border-bottom: 4px solid $color-unit-3;
+    }
+    &.color-unit-4 {
+      border-bottom: 4px solid $color-unit-4;
+    }
+    &.color-unit-5 {
+      border-bottom: 4px solid $color-unit-5;
+    }
+    &.color-unit-6 {
+      border-bottom: 4px solid $color-unit-6;
+    }
+    &.color-unit-7 {
+      border-bottom: 4px solid $color-unit-difficult;
+    }
+  }
+
+  .card__controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 0 10px;
+  }
+
+  .controls__btn {
+    width: 32px;
+    height: 32px;
+    background-size: cover;
+  }
+
+  .btns-wrap {
+    display: flex;
+    column-gap: 20px;
+  }
+
+  .learned-btn {
+    background-image: url('../../assets/icons/add-learned.svg');
+  }
+  .learned-remove-btn {
+    background-image: url('../../assets/icons/remove-learned.svg');
+  }
+  .difficult-btn {
+    background-image: url('../../assets/icons/add-difficult.svg');
+  }
+  .difficult-remove-btn {
+    background-image: url('../../assets/icons/remove-difficult.svg');
+  }
+
+  .statistic {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .icon {
+      width: 32px;
+      height: 32px;
+      background-image: url('../../assets/icons/statistics.png');
+      background-size: cover;
+      margin-right: 5px;
+    }
+
+    .text {
+      font-size: 24px;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+@import '../../styles//constants.scss';
+@import '../../styles/placeholders.scss';
+@import '../../styles/mixins.scss';
+
+.textbook__wrapper {
+  padding-top: 40px;
+}
+
+.textbook__units {
+  flex-basis: 100%;
+  display: flex;
+  max-width: 100%;
+
+  @include media-mobile-small() {
+    overflow: auto;
+    padding-bottom: 5px;
+  }
+}
+
+.textbook__words {
+  margin-bottom: 30px;
+}
+
+.textbook__pagination {
+  flex-grow: 1;
+  padding: 10px 20px;
+  background-color: $color-bg-light;
+  box-shadow: $shaddow-word-card;
+
+  @include media-mobile-small() {
+    padding: 10px;
+  }
+}

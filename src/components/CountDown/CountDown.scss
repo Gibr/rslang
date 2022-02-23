@@ -1,0 +1,10 @@
+@import '../../styles/constants.scss';
+
+.timer-output {
+  box-shadow: $shaddow-word-card;
+  border-radius: 50%;
+  padding: 15px;
+  background-color: $color-unit-6;
+  font-size: 40px;
+  line-height: 40px;
+}

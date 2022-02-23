@@ -1,0 +1,31 @@
+$font-main: 'Roboto', sans-serif;
+$color-font-dark: #000;
+$color-font-light: #fff;
+
+$color-main: rgba(211, 35, 47, 1);
+
+$color-bg-light: #b6b6b6;
+$color-bg-dark: #2e2e2e;
+
+$color-unit-1: rgb(255, 227, 148);
+$color-unit-2: rgb(235, 191, 70);
+$color-unit-3: rgb(171, 207, 99);
+$color-unit-4: rgb(136, 165, 80);
+$color-unit-5: rgb(171, 208, 212);
+$color-unit-6: rgb(122, 164, 168);
+$color-unit-difficult: rgba(211, 35, 47, 0.8);
+
+$color-word-card-bg-learned: $color-bg-light;
+$color-word-card-bg-difficult: rgba(211, 35, 47, 0.4);
+
+$color-pagination-border: #9e9e9e;
+$color-pagination-bg: #a9a9a9;
+
+$shaddow-light: 4px 4px 8px 0px $color-bg-light;
+$shaddow-dark: 0 1px 4px rgba(0, 0, 0, 1), -23px 0 20px -23px rgba(0, 0, 0, 0.8),
+  23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+$shaddow-word-card: 0 1px 4px rgb(68, 68, 68),
+  -23px 0 20px -23px rgba(68, 68, 68, 0.8),
+  23px 0 20px -23px rgba(68, 68, 68, 0.8), 0 0 40px rgba(68, 68, 68, 0.1) inset;
+
+$overlay-bg-color: rgba(0, 0, 0, 0.85);

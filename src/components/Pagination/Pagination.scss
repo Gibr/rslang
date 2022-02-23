@@ -1,0 +1,46 @@
+@import '../../styles/constants.scss';
+@import '../../styles/mixins.scss';
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.pagination__control {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.pagination__pages-container {
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+}
+
+.pages-item {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 5px;
+  border-radius: 8px;
+  border: 1px solid $color-pagination-border;
+
+  @include media-mobile-small() {
+    width: 34px;
+    height: 34px;
+  }
+
+  &.current-page {
+    background-color: $color-pagination-bg;
+  }
+
+  &:disabled {
+    border: none;
+    color: $color-font-dark;
+    cursor: default;
+  }
+}
