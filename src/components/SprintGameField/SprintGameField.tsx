@@ -16,11 +16,12 @@ import {
 } from '../PopupWrapper/popupWrapperSlice';
 import PopupWrapper from '../PopupWrapper/PopupWrapper';
 import GameResultsPopup from '../GameResultsPopup/GameResultsPopup';
-import { generateSprintData } from '../../services/generateGameData';
-import { getUserDifficultWords, getWords } from '../../api/words/words';
+import {
+  generateSprintData,
+  getGameData,
+} from '../../services/generateGameData';
 import CountDown from '../CountDown/CountDown';
-import { TEXTBOOK_DIFFICULT_UNIT_NUM } from '../../app/constants/global';
-import { locStorageKeys } from '../../app/constants/api';
+import { selectSignInData } from '../Forms/AuthFormSlice';
 
 function SprintGameField(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -29,32 +30,21 @@ function SprintGameField(): JSX.Element {
   const currentQuestionIndex = useAppSelector(selectCurrentQustionIndex);
   const isPopupOpened = useAppSelector(selectIsPopupOpened);
   const results = useAppSelector(selectGameResults);
+  const { isSignIn } = useAppSelector(selectSignInData);
 
   const [isWordsDataLoaded, setIsWordsDataLoaded] = useState(false);
   const [questions, setQuestions] = useState([] as JSX.Element[]);
 
   useEffect(() => {
     const fetchWordsData = async (unit: number, page: number) => {
-      let wordsData;
-
-      if (unit === TEXTBOOK_DIFFICULT_UNIT_NUM) {
-        const { token, userId } = JSON.parse(
-          localStorage.getItem(locStorageKeys.USER_DATA) || ''
-        );
-        const res = await getUserDifficultWords({
-          token,
-          userId,
-          page: page - 1,
-        });
-
-        wordsData = res[0].paginatedResults;
-      } else {
-        wordsData = await getWords(unit, page);
-      }
+      const questionsData = await getGameData({
+        isSignIn,
+        unit,
+        page,
+        generateGameData: generateSprintData,
+      });
 
       setIsWordsDataLoaded(true);
-
-      const questionsData = generateSprintData(wordsData);
       dispatch(setQuestionsData(questionsData));
 
       setQuestions(
@@ -65,14 +55,11 @@ function SprintGameField(): JSX.Element {
     };
 
     if (gameWordsUnit && gameWordsUnitPage) {
-      fetchWordsData(gameWordsUnit, gameWordsUnitPage);
+      fetchWordsData(gameWordsUnit - 1, gameWordsUnitPage - 1);
     }
-  }, [dispatch, gameWordsUnit, gameWordsUnitPage]);
+  }, [dispatch, isSignIn, gameWordsUnit, gameWordsUnitPage]);
 
   const handleCloseGameBtnClick = () => dispatch(switchPopup());
-
-  // TODO implement game-close process
-  // TODO implement keyboard game controls
 
   const content = isWordsDataLoaded ? (
     <>
@@ -95,7 +82,11 @@ function SprintGameField(): JSX.Element {
           ))}
         </div>
         <div className="gamefield__questions-container">
-          {questions[currentQuestionIndex]}
+          {questions.length ? (
+            questions[currentQuestionIndex]
+          ) : (
+            <div className="no-words-message">No words to play</div>
+          )}
         </div>
       </div>
     </>

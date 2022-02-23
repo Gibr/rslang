@@ -2,7 +2,7 @@ import './TextbookWordCards.scss';
 
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { IUserWord, IWordData, IWordsData } from '../../app/types';
+import { IWordsData } from '../../app/types';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   selectCurrentUnit,
@@ -10,15 +10,10 @@ import {
   selectWordsData,
   setWordsData,
 } from '../TextbookNav/textbookNavSlice';
-import {
-  getAllUserWords,
-  getUserDifficultWords,
-  getWords,
-} from '../../api/words/words';
+import { getWords } from '../../api/words/words';
 import { selectSignInData } from '../Forms/AuthFormSlice';
 import WordCard from '../WordCard/WordCard';
-import { TEXTBOOK_DIFFICULT_UNIT_NUM } from '../../app/constants/global';
-import { locStorageKeys } from '../../app/constants/api';
+import { getUserWordsData } from '../../services/generateGameData';
 
 function TextbookWordCards(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -37,43 +32,14 @@ function TextbookWordCards(): JSX.Element {
   useEffect(() => {
     const fetchData = async () => {
       if (isSignIn) {
-        const { token, userId } = JSON.parse(
-          localStorage.getItem(locStorageKeys.USER_DATA) || ''
+        const userWordsData = await getUserWordsData(
+          currentUnit - 1,
+          currentUnitPage - 1
         );
 
-        if (currentUnit === TEXTBOOK_DIFFICULT_UNIT_NUM) {
-          const difficultWords = await getUserDifficultWords({
-            token,
-            userId,
-            page: currentUnitPage - 1,
-          });
-
-          dispatch(setWordsData(difficultWords[0].paginatedResults));
-        } else {
-          const data = await getWords(currentUnit, currentUnitPage);
-          const userWordsData = await getAllUserWords(token, userId);
-
-          const userWords = data.map((word: IWordData) => {
-            const isInUserWords = userWordsData.find(
-              (el: IUserWord) => el.wordId === word.id
-            );
-            if (isInUserWords) {
-              return {
-                ...word,
-                difficulty: isInUserWords ? isInUserWords.difficulty : 'weak',
-                learned:
-                  isInUserWords && 'optional' in isInUserWords
-                    ? isInUserWords.optional.learned
-                    : false,
-              };
-            }
-            return word;
-          });
-
-          dispatch(setWordsData(userWords));
-        }
+        dispatch(setWordsData(userWordsData));
       } else {
-        const data = await getWords(currentUnit, currentUnitPage);
+        const data = await getWords(currentUnit - 1, currentUnitPage - 1);
         dispatch(setWordsData(data));
       }
     };

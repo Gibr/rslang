@@ -3,7 +3,7 @@ import { IQueryParams } from '../types';
 export const baseUrl = 'https://rslang-2021q3.herokuapp.com';
 
 export const generateWordsApiUrl = (unit: number, page: number) =>
-  `${baseUrl}/words?page=${page - 1}&group=${unit - 1}`;
+  `${baseUrl}/words?page=${page}&group=${unit}`;
 
 export const generateWordImageUrl = (imageName: string) =>
   `${baseUrl}/${imageName}`;
