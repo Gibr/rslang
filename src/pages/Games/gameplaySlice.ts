@@ -19,7 +19,7 @@ export type IResultData = {
 export interface IGameplayState {
   gameWordsUnit: number | null;
   gameWordsUnitPage: number | null;
-  questionsData: ISprintQuestionData[] | IAudioChallengeQuestionData[];
+  questionsData: (ISprintQuestionData | IAudioChallengeQuestionData)[];
   currentQuestionIndex: number;
   resultsData: IResultData[];
 }
@@ -52,7 +52,7 @@ export const gameplaySlice = createSlice({
     setQuestionsData: (
       state,
       action: PayloadAction<
-        ISprintQuestionData[] | IAudioChallengeQuestionData[]
+        (ISprintQuestionData | IAudioChallengeQuestionData)[]
       >
     ) => {
       state.questionsData = action.payload;

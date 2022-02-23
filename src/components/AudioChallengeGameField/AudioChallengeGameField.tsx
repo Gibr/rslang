@@ -1,7 +1,6 @@
 import './AudioChallengeGameField.scss';
 
 import React, { useEffect, useState } from 'react';
-import { getWords } from '../../api/words/words';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   selectCurrentQustionIndex,
@@ -14,8 +13,12 @@ import {
 import { selectIsPopupOpened } from '../PopupWrapper/popupWrapperSlice';
 import PopupWrapper from '../PopupWrapper/PopupWrapper';
 import GameResultsPopup from '../GameResultsPopup/GameResultsPopup';
-import { generateAudioChallengeData } from '../../services/generateGameData';
+import {
+  generateAudioChallengeData,
+  getGameData,
+} from '../../services/generateGameData';
 import AudioChallengeQuestion from '../AudioChallengeQuestion/AudioChallengeQuestion';
+import { selectSignInData } from '../Forms/AuthFormSlice';
 
 function AudioChallengeGameField(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -24,6 +27,7 @@ function AudioChallengeGameField(): JSX.Element {
   const currentQuestionIndex = useAppSelector(selectCurrentQustionIndex);
   const isPopupOpened = useAppSelector(selectIsPopupOpened);
   const results = useAppSelector(selectGameResults);
+  const { isSignIn } = useAppSelector(selectSignInData);
   // console.log('currentQuestionIndex - ', currentQuestionIndex);
   // console.log('results - ', results);
 
@@ -32,11 +36,17 @@ function AudioChallengeGameField(): JSX.Element {
 
   useEffect(() => {
     const fetchWordsData = async (unit: number, page: number) => {
-      const wordsData = await getWords(unit, page);
+      const questionsData = await getGameData({
+        isSignIn,
+        unit,
+        page,
+        generateGameData: generateAudioChallengeData,
+      });
+      // const wordsData = await getWords(unit, page);
 
       setIsWordsDataLoaded(true);
 
-      const questionsData = generateAudioChallengeData(wordsData);
+      // const questionsData = generateAudioChallengeData(wordsData);
       dispatch(setQuestionsData(questionsData));
 
       setQuestions(
@@ -47,9 +57,9 @@ function AudioChallengeGameField(): JSX.Element {
     };
 
     if (gameWordsUnit && gameWordsUnitPage) {
-      fetchWordsData(gameWordsUnit, gameWordsUnitPage);
+      fetchWordsData(gameWordsUnit - 1, gameWordsUnitPage - 1);
     }
-  }, [dispatch, gameWordsUnit, gameWordsUnitPage]);
+  }, [isSignIn, dispatch, gameWordsUnit, gameWordsUnitPage]);
 
   const content = isWordsDataLoaded ? (
     <>
